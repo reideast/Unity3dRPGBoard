@@ -14,9 +14,14 @@ public class GameManager : MonoBehaviour {
 	void Start () {
         GameManager.instance = this;
 
+        //// mess with transparency on game board squares. See: https://answers.unity.com/questions/282272/how-to-do-a-glass-cube.html
+        //Renderer r = oneByOnePrefab.AddComponent<Renderer>();
+        //r.material = new Material(Shader.Find("Transparent/Diffuse"));
+        //r.material.color = new Color(0f, 0.2f, 1f, 0.5f); // 50% alpha with a blue-green colour
+
         // Set camera a bit above the ground, and pointing at the middle
-        camera.transform.position = new Vector3(5f, 3f, 5f);
-        camera.transform.LookAt(Vector3.zero);
+        camera.transform.position = new Vector3(5f, 8f, 5f);
+        camera.transform.LookAt(new Vector3(0f, 5f, 0f));
 
         // Create the grid
         MakeBoard();
@@ -30,6 +35,7 @@ public class GameManager : MonoBehaviour {
 
     private void MakeTestingBoard()
     {
+        float dropFromHeight = 10f;
         float unitWidth = 1;
         float margin = 0.05f;
         float startX = -10f, endX = 10f,
@@ -37,8 +43,8 @@ public class GameManager : MonoBehaviour {
         for (float x = startX; x <= endX; x += unitWidth) {
             for (float z = startZ; z <= endZ; z += unitWidth) {
                 GameObject generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab);
-                generatedSquare.transform.position = new Vector3(x + margin, 0f, z + margin);
-                Debug.Log("Made a square=" + generatedSquare);
+                generatedSquare.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
+                //Debug.Log("Made a square=" + generatedSquare);
             }
         }
     }
