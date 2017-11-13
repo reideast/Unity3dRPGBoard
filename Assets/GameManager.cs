@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour {
     {
         float dropFromHeight = 10f;
         float unitWidth = 1;
-        float margin = 0.05f;
-        float startX = -10f, endX = 10f,
-            startZ = -10f, endZ = 10f;
+        float margin = 0.10f;
+        float startX = -30f, endX = 30f,
+            startZ = -30f, endZ = 30f;
         for (float x = startX; x <= endX; x += unitWidth) {
             for (float z = startZ; z <= endZ; z += unitWidth) {
                 GameObject generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab);
