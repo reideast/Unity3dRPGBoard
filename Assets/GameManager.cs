@@ -13,16 +13,21 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     private Space[,] spaces;
+    private GameObject player;
+    private GameObject monster;
 
     public int startX, endX, startZ, endZ;
     public float dropFromHeight = 10f;
     public float unitWidth = 1;
     public float margin = 0.10f;
+    public float spaceHeight = 0.02f;
+    private Vector3 SPACE_HEIGHT_MOD;
 
     public float cameraSpeed = 4;
 
     void Start () {
         GameManager.instance = this;
+        SPACE_HEIGHT_MOD = new Vector3(0f, spaceHeight, 0f);
 
         spaces = new Space[endX - startX, endZ - startZ];
 
@@ -36,6 +41,8 @@ public class GameManager : MonoBehaviour {
 
         // Place some playing objects
         PlaceTokens();
+
+        MouseOverSquareEffect.isEffectActive = true;
     }
 
     //private void OnDrawGizmos() {
@@ -58,15 +65,50 @@ public class GameManager : MonoBehaviour {
     }
 
     private void PlaceTokens() {
-        GameObject generatedPlayer = (GameObject) Instantiate(instance.playerPrefab);
+        player = (GameObject) Instantiate(instance.playerPrefab);
         Space spaceToPlace = spaces[23, 24];
         Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
-        generatedPlayer.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
+        player.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
 
-        GameObject generatedMonster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
+        monster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
         spaceToPlace = spaces[25, 28];
         squareBasis = spaceToPlace.gameSpace.transform.position;
-        generatedMonster.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
+        monster.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
+    }
+
+    // Walk a player or monster token to another token
+    private void WalkToken(GameObject token, int xFrom, int zFrom, int xTo, int zTo) {
+
+    }
+    // Hop from one space to another space (probably right next to it)
+    private void HopToken(GameObject token, int xFrom, int zFrom, int xTo, int zTo) {
+        GameObject startSpace = spaces[xFrom, zFrom].gameSpace,
+            endSpace = spaces[xTo, zTo].gameSpace;
+        //float startX = startSpace.transform.position.x, startZ = startSpace.transform.position.z,
+        //    endX = endSpace.transform.position.x, endZ = endSpace.transform.position.z;
+        startPos = startSpace.transform.position + SPACE_HEIGHT_MOD;
+        endPos = endSpace.transform.position + SPACE_HEIGHT_MOD;
+        center = (startPos + endPos) * 0.5f;
+        center -= new Vector3(0, 1, 0);
+        relativeStartPos = startPos - center;
+        relativeEndPos = endPos - center;
+        tokenToAnimate = token;
+        startTime = Time.time;
+        endTime = startTime + 0.5f;
+        InvokeRepeating("HopLoop", 0f, 0.01f);
+    }
+    private GameObject tokenToAnimate;
+    private Vector3 startPos, endPos, relativeStartPos, relativeEndPos, center;
+    private float startTime;
+    private float endTime;
+    private void HopLoop() {
+        if (Time.time < endTime) {
+            tokenToAnimate.transform.position = Vector3.Slerp(relativeStartPos, relativeEndPos, (Time.time - startTime) / (endTime - startTime));
+            tokenToAnimate.transform.position += center;
+        } else {
+            tokenToAnimate.transform.position = endPos;
+            //HopToken
+        }
     }
 
     // Update is called once per frame
@@ -92,6 +134,13 @@ public class GameManager : MonoBehaviour {
             camera.transform.position = new Vector3(camera.transform.position.x + deltaX, camera.transform.position.y, camera.transform.position.z + deltaZ);
         }
 	}
+
+    // Recevied from any arbitrary GameObject with the OnClick-Message script attached
+    public void MessageClick(Vector2 coord) { 
+        Debug.Log("Clicked " + coord.x + "," + coord.y);
+
+        HopToken(player, 20, 20, 21, 20);
+    }
 
     // A struct to hold information about the game board spaces
     private class Space {

@@ -4,6 +4,8 @@
 // THIS IS NOT MY CODE!
 public class MouseOverSquareEffect : MonoBehaviour {
 
+    public static bool isEffectActive = false;
+
     //This second example changes the GameObject's color to red when the mouse hovers over it
     //Ensure the GameObject has a MeshRenderer
 
@@ -25,7 +27,9 @@ public class MouseOverSquareEffect : MonoBehaviour {
     void OnMouseOver()
     {
         //Change the color of the GameObject to red when the mouse is over GameObject
-        m_Renderer.material.color = m_MouseOverColor;
+        if (isEffectActive) {
+            m_Renderer.material.color = m_MouseOverColor;
+        }
     }
 
     void OnMouseExit()
