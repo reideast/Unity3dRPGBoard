@@ -4,17 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-
-    private class Space {
-        public GameObject gameSpace; // public reference to the OneByOne GameObject pointed to by this space
-        public int x, z; // public reference to this object's position in the grid
-        public Space(int x, int z, GameObject gameSpace) {
-            this.gameSpace = gameSpace;
-            this.x = x;
-            this.z = z;
-        }
-    }
-
     // Public GameObjects to be assigned in editor
     public GameObject oneByOnePrefab;
     public Camera camera;
@@ -23,14 +12,16 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
-    public int startX, endX, startZ, endZ;
     private Space[,] spaces;
+
+    public int startX, endX, startZ, endZ;
     public float dropFromHeight = 10f;
     public float unitWidth = 1;
     public float margin = 0.10f;
 
-	// Use this for initialization
-	void Start () {
+    public float cameraSpeed = 4;
+
+    void Start () {
         GameManager.instance = this;
 
         spaces = new Space[endX - startX, endZ - startZ];
@@ -39,10 +30,6 @@ public class GameManager : MonoBehaviour {
         //Renderer r = oneByOnePrefab.AddComponent<Renderer>();
         //r.material = new Material(Shader.Find("Transparent/Diffuse"));
         //r.material.color = new Color(0f, 0.2f, 1f, 0.5f); // 50% alpha with a blue-green colour
-
-        // Set camera a bit above the ground, and pointing at the middle
-        camera.transform.position = new Vector3((endX - startX) / 2f, 8f, (endZ - startZ) / 2f);
-        camera.transform.LookAt(new Vector3(0f, 5f, 0f));
 
         // Create the grid
         MakeBoard();
@@ -63,27 +50,30 @@ public class GameManager : MonoBehaviour {
                 generatedSquare.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
                 //Debug.Log("Made a square=" + generatedSquare);
                 spaces[x, z] = new Space(x, z, generatedSquare);
+                OnClickMsgGameManager script = generatedSquare.GetComponent<OnClickMsgGameManager>();
+                script.x = x;
+                script.z = z;
             }
         }
     }
 
     private void PlaceTokens() {
         GameObject generatedPlayer = (GameObject) Instantiate(instance.playerPrefab);
-        Space spaceToPlace = spaces[3, 4];
+        Space spaceToPlace = spaces[23, 24];
         Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
         generatedPlayer.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
 
         GameObject generatedMonster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
-        spaceToPlace = spaces[5, 8];
+        spaceToPlace = spaces[25, 28];
         squareBasis = spaceToPlace.gameSpace.transform.position;
         generatedMonster.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
     }
 
     // Update is called once per frame
     void Update () {
-        float cameraSpeed = 4;
         float deltaX = 0f, deltaZ = 0f;
 
+        // Move the camera along the diagonals
         if (Input.GetKey(KeyCode.A)) {
             deltaX += cameraSpeed * Time.deltaTime;
             deltaZ -= cameraSpeed * Time.deltaTime;
@@ -102,4 +92,16 @@ public class GameManager : MonoBehaviour {
             camera.transform.position = new Vector3(camera.transform.position.x + deltaX, camera.transform.position.y, camera.transform.position.z + deltaZ);
         }
 	}
+
+    // A struct to hold information about the game board spaces
+    private class Space {
+        public GameObject gameSpace; // public reference to the OneByOne GameObject pointed to by this space
+        public int x, z; // public reference to this object's position in the grid
+        public Space(int x, int z, GameObject gameSpace) {
+            this.gameSpace = gameSpace;
+            this.x = x;
+            this.z = z;
+        }
+    }
+
 }
