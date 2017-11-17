@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4755583223137604}
   - component: {fileID: 54952803273305032}
   - component: {fileID: 65867596253194718}
+  - component: {fileID: 114611581876292834}
   m_Layer: 0
   m_Name: Skeleton with a Spear
   m_TagString: Untagged
@@ -241,3 +242,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 15, y: 15, z: 15}
   m_Center: {x: 0, y: 0, z: 6}
+--- !u!114 &114611581876292834
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1289812769443708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade3ac2d1b5db3241b6d56d3c2ae6c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -29,7 +29,9 @@ public class MouseOverSquareEffect : MonoBehaviour {
         //Change the color of the GameObject to red when the mouse is over GameObject
         if (isEffectActive) {
             m_Renderer.material.color = m_MouseOverColor;
-        }
+        } else {
+            m_Renderer.material.color = m_OriginalColor;
+        } 
     }
 
     void OnMouseExit()

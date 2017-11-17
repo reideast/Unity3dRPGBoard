@@ -376,14 +376,8 @@ MonoBehaviour:
   - {fileID: 1289812769443708, guid: ed6b805716ee8624da21072ac7aef514, type: 2}
   playerPrefab: {fileID: 1260588639459426, guid: 2c78db852e24000439501c99a687e348,
     type: 2}
-  startX: 0
-  endX: 60
-  startZ: 0
-  endZ: 60
-  dropFromHeight: 10
-  unitWidth: 1
-  margin: 0.1
-  cameraSpeed: 4
+  rowsX: 60
+  colsZ: 60
 --- !u!4 &2030041288
 Transform:
   m_ObjectHideFlags: 0
