@@ -7,8 +7,11 @@ public class Pathfind : MonoBehaviour {
     [HideInInspector] public int x, z;
 
 
-    private bool DEBUG_MODE = true;
-
+    /**
+     * Find a path using A*, and return it as a "stack" (i.e. LinkedList, but please pop off the Front)
+     * NOTE: This uses my code that I submitted for assignment 10 from CT255 that I completed in Spring of 2016.
+     *          It is largely unchanged, except converting from Java -> C#
+     */
     public LinkedList<GameManager.Hop> findPath(int xFrom, int zFrom, int xTo, int zTo) {
         // **** do not pathfind to own square ****
         if (xTo == xFrom && zTo == zFrom) {
@@ -25,7 +28,7 @@ public class Pathfind : MonoBehaviour {
             for (int col = 0; col < GameManager.instance.colsZ; ++col) {
                 nodes[col, row] = new Node();
                 nodes[col, row].x = col;
-                nodes[col, row].y = row;
+                nodes[col, row].z = row;
                 if (GameManager.instance.spaces[col, row].isBlocked) {
                     nodes[col, row].isClosed = true;
                 }
@@ -53,34 +56,31 @@ public class Pathfind : MonoBehaviour {
                 }
             }
             // curr is now node with lowest f
-            if (DEBUG_MODE) {
-                Debug.Log("examining open node at (" + curr.x + "," + curr.y + ")");
-            }
 
             // 2. close node
             curr.isClosed = true;
             openList.Remove(curr);
 
             // 3. test for termination condition: if this node is the target, then quit, successfully
-            if (curr.x == xTo && curr.y == zTo) {
+            if (curr.x == xTo && curr.z == zTo) {
                 isPathFound = true;
             }
 
             // 4. add all nodes surrounding current to open list, pointing back to current
             for (int deltaRow = -1; deltaRow <= 1; ++deltaRow) {
-                if (curr.y + deltaRow == -1 || curr.y + deltaRow == GameManager.instance.rowsX) {
+                if (curr.z + deltaRow == -1 || curr.z + deltaRow == GameManager.instance.rowsX) {
                     continue;
                 }
                 for (int deltaCol = -1; deltaCol <= 1; ++deltaCol) {
                     if (curr.x + deltaCol == -1 || curr.x + deltaCol == GameManager.instance.colsZ) {
                         continue;
                     }
-                    nearby = nodes[curr.x + deltaCol, curr.y + deltaRow];
+                    nearby = nodes[curr.x + deltaCol, curr.z + deltaRow];
 
                     if (!nearby.isClosed) {
                         if (nearby.g == 0) { // first time examining this node
                             nearby.g = curr.g + 1;
-                            nearby.h = System.Math.Abs(xTo - nearby.x) + System.Math.Abs(zTo - nearby.y);
+                            nearby.h = System.Math.Abs(xTo - nearby.x) + System.Math.Abs(zTo - nearby.z);
                             nearby.f = nearby.g + nearby.h;
                             nearby.parent = curr;
                             openList.AddLast(nearby);
@@ -107,17 +107,18 @@ public class Pathfind : MonoBehaviour {
             LinkedList<GameManager.Hop> pathStack = new LinkedList<GameManager.Hop>();
             //path = new Stack<>();
             curr = nodes[xTo, zTo];
-            // first item on stack should be xTo,Y
+            // Skip the first square in the path (the destination). Start the loop at the square just before the end. (For Unity, I want "hops", but the original Java was designed to return the whole path.)
+            if (curr != null) {
+                curr = curr.parent;
+            }
+
             // then traverse into path
+            // first item on stack should be xTo,zTo
             int prevX = xTo, prevZ = zTo;
             while (curr != null) {
-                if (DEBUG_MODE) {
-                    Debug.Log("pushing onto stack: (" + curr.x + "," + curr.y + ")");
-                }
-                pathStack.AddFirst(new GameManager.Hop(curr.x, curr.y, prevX, prevZ));
-                //path.push(curr);
+                pathStack.AddFirst(new GameManager.Hop(curr.x, curr.z, prevX, prevZ));
                 prevX = curr.x;
-                prevZ = curr.y;
+                prevZ = curr.z;
 
                 curr = curr.parent;
             }
@@ -131,7 +132,7 @@ public class Pathfind : MonoBehaviour {
     // helper class for the A* algorithm
     // all fields are simply publicly accessible!
     private class Node {
-        public int x, y;
+        public int x, z;
         public Node parent = null;
         public int g, h, f;
         public bool isClosed = false;

@@ -58,13 +58,15 @@ public class GameManager : MonoBehaviour {
     {
         for (int x = 0; x < rowsX; x += (int) unitWidth) {
             for (int z = 0; z < colsZ; z += (int) unitWidth) {
-                GameObject generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab);
-                generatedSquare.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
-                //Debug.Log("Made a square=" + generatedSquare);
+                GameObject generatedSquare = null;
+                if (x != 29 || z != 14) { // Don't make a square on the tree
+                    generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab);
+                    generatedSquare.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
+                    OnClickMsgGameManager script = generatedSquare.GetComponent<OnClickMsgGameManager>();
+                    script.x = x;
+                    script.z = z;
+                }
                 spaces[x, z] = new Space(x, z, generatedSquare);
-                OnClickMsgGameManager script = generatedSquare.GetComponent<OnClickMsgGameManager>();
-                script.x = x;
-                script.z = z;
             }
         }
     }
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour {
         Pathfind goLocation = player.GetComponent<Pathfind>();
         goLocation.x = 20;
         goLocation.z = 20;
+        spaces[20, 20].isBlocked = true;
 
         monster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
         spaceToPlace = spaces[25, 28];
@@ -85,6 +88,10 @@ public class GameManager : MonoBehaviour {
         goLocation = monster.GetComponent<Pathfind>();
         goLocation.x = 25;
         goLocation.z = 28;
+        spaces[25, 28].isBlocked = true;
+
+        // A tree!
+        spaces[29, 14].isBlocked = true;
     }
 
 
@@ -96,28 +103,25 @@ public class GameManager : MonoBehaviour {
     }
     // Walk a player or monster token to another token
     private void WalkToken(GameObject token, int xTo, int zTo) {
-        //// make a queue of sqaures to hop over
-        //hopsQueue = new LinkedList<Hop>();
-        //// TODO: DEBUG: testing four hops
-        //hopsQueue.AddLast(new Hop(20, 20, 21, 20));
-        //hopsQueue.AddLast(new Hop(21, 20, 22, 20));
-        //hopsQueue.AddLast(new Hop(22, 20, 23, 20));
-        //hopsQueue.AddLast(new Hop(23, 20, 23, 21));
-        //hopsQueue.AddLast(new Hop(23, 21, 23, 22));
-        //hopsQueue.AddLast(new Hop(23, 22, 24, 23));
-        //hopsQueue.AddLast(new Hop(24, 23, 25, 24));
-
+        // Find a path to the desired square, by getting a queue of sqaures to hop over
         Pathfind tokenPositionScript = token.GetComponent<Pathfind>();
-        int xFrom = tokenPositionScript.x, zFrom = tokenPositionScript.z;
-        hopsQueue = tokenPositionScript.findPath(xFrom, zFrom, xTo, zTo);
+        hopsQueue = tokenPositionScript.findPath(tokenPositionScript.x, tokenPositionScript.z, xTo, zTo);
 
-        // start the hopping at the first one. will continue until hopsQueue is empty
-        MouseOverSquareEffect.isEffectActive = false;
-        NextHopToken(token);
+        if (hopsQueue != null) {
+            // change the token's stored properties to its final position
+            spaces[tokenPositionScript.x, tokenPositionScript.z].isBlocked = false;
+            tokenPositionScript.x = xTo;
+            tokenPositionScript.z = zTo;
+            spaces[xTo, zTo].isBlocked = true;
 
-        // change the token's stored position to its final position
-        tokenPositionScript.x = xTo;
-        tokenPositionScript.z = zTo;
+            Debug.Log("Hops left=" + hopsQueue.Count);
+
+            // start the hopping at the first one. will continue until hopsQueue is empty
+            MouseOverSquareEffect.isEffectActive = false;
+            NextHopToken(token);
+        } else {
+            Debug.Log("No path to walk. Pathfinding failed");
+        }
     }
     public class Hop {
         public int xFrom, zFrom, xTo, zTo;
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour {
             // Get next hop out of queue
             Hop nextHop = hopsQueue.First.Value;
             hopsQueue.RemoveFirst(); // pop
-            // Set up global variables for next hop. (Requried to be global to use InvokeRepeating to loop through an animation.)
+            // Set up global variables for next hop. (Requried to be global to use InvokeRepeating to loop through the animation.)
             startPos = spaces[nextHop.xFrom, nextHop.zFrom].gameSpace.transform.position + SPACE_HEIGHT_MOD * 2;
             endPos = spaces[nextHop.xTo, nextHop.zTo].gameSpace.transform.position + SPACE_HEIGHT_MOD * 2;
             center = (startPos + endPos) * 0.5f;
@@ -141,6 +145,7 @@ public class GameManager : MonoBehaviour {
             tokenToAnimate = token;
             startTime = Time.time;
             endTime = startTime + HOP_ANIMATION_TIME;
+            Debug.Log("Hopping from (" + nextHop.xFrom + "," + nextHop.zFrom + ") to (" + nextHop.xTo + "," + nextHop.zTo + "). Hops still in queue =" + hopsQueue.Count);
             InvokeRepeating("HopLoop", 0f, 0.01f);
         } else {
             // TODO: DONE WITH HOPPING!
