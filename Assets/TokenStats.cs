@@ -6,7 +6,7 @@ public class TokenStats : MonoBehaviour {
 
     [HideInInspector] public int x, z;
 
-    public string name;
+    public string characterName;
     public int hp;
 
     public string attackName;

@@ -12,6 +12,6 @@ public class WeaponSelfActions : MonoBehaviour {
     // Delete the parent GO
     // This function will be assigned to an Animation Event
     private void RemoveWeapon() {
-        Destroy(this.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 }

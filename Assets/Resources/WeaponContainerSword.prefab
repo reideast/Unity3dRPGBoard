@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 33146826529291342}
   - component: {fileID: 23060851569864492}
   - component: {fileID: 95801129659356148}
-  - component: {fileID: 114043975906986716}
+  - component: {fileID: 114609110797775576}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -84,7 +84,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1626496607049686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: -0.6876283, y: 5.1849337, z: -3.73945}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4311891767329126}
@@ -190,7 +190,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114043975906986716
+--- !u!114 &114609110797775576
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
