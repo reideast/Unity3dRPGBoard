@@ -73,16 +73,16 @@ public class GameManager : MonoBehaviour {
 
     private void PlaceTokens() {
         player = (GameObject) Instantiate(instance.playerPrefab);
-        Space spaceToPlace = spaces[20, 20];
+        Space spaceToPlace = spaces[25, 23];
         Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
         player.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
         Pathfind goLocation = player.GetComponent<Pathfind>();
-        goLocation.x = 20;
-        goLocation.z = 20;
+        goLocation.x = 25;
+        goLocation.z = 23;
         TokenStats tokenStats = player.GetComponent<TokenStats>();
-        tokenStats.x = 20;
-        tokenStats.z = 20;
-        spaces[20, 20].isBlocked = true;
+        tokenStats.x = 25;
+        tokenStats.z = 23;
+        spaces[25, 23].isBlocked = true;
 
         monster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
         spaceToPlace = spaces[25, 28];

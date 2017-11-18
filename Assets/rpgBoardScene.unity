@@ -581,7 +581,7 @@ MonoBehaviour:
     type: 2}
   camera: {fileID: 289742870}
   monsterPrefabs:
-  - {fileID: 1289812769443708, guid: ed6b805716ee8624da21072ac7aef514, type: 2}
+  - {fileID: 1624308377411796, guid: a9685adbdd9017844a44ea4828e0ed9e, type: 2}
   playerPrefab: {fileID: 1831287604591858, guid: 14d9bea879fef5542bac5cffd6b2a2c1,
     type: 2}
   rowsX: 60
