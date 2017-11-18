@@ -10,11 +10,11 @@ public class MouseHoverHighlight : MonoBehaviour {
     //Ensure the GameObject has a MeshRenderer
 
     //When the mouse hovers over the GameObject, it turns to this color (red)
-    Color m_MouseOverColor = Color.red;
+    public Color m_MouseOverColor = Color.red;
     //This stores the GameObject’s original color
-    Color m_OriginalColor;
+    private Color m_OriginalColor;
     //Get the GameObject’s mesh renderer to access the GameObject’s material and color
-    MeshRenderer m_Renderer;
+    private MeshRenderer m_Renderer;
 
     void Start()
     {

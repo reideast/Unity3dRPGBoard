@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1260588639459426}
+  m_RootGameObject: {fileID: 1831287604591858}
   m_IsPrefabParent: 1
---- !u!1 &1152267313278646
+--- !u!1 &1067216463626686
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4899483149684212}
-  - component: {fileID: 33095596318150494}
-  - component: {fileID: 23027817948421978}
+  - component: {fileID: 4605184717997720}
+  - component: {fileID: 33945205921575298}
+  - component: {fileID: 23557033703595444}
   m_Layer: 0
   m_Name: <STL_BINARY>
   m_TagString: Untagged
@@ -28,19 +28,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1260588639459426
+--- !u!1 &1454990631683428
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4539231646023492}
-  - component: {fileID: 54312709809330152}
-  - component: {fileID: 65815073444334084}
-  - component: {fileID: 114187629389271554}
-  - component: {fileID: 114410545957399850}
-  - component: {fileID: 114026352161093334}
+  - component: {fileID: 4766905392507830}
   m_Layer: 0
   m_Name: Sir Baric Nylef
   m_TagString: Untagged
@@ -48,39 +43,73 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4539231646023492
+--- !u!1 &1831287604591858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4433567544540024}
+  - component: {fileID: 114557767149943710}
+  - component: {fileID: 114084422183067096}
+  - component: {fileID: 114912141026326432}
+  - component: {fileID: 65516469254351600}
+  - component: {fileID: 54165666656781742}
+  m_Layer: 0
+  m_Name: PlayerContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4433567544540024
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260588639459426}
-  m_LocalRotation: {x: 0.6830127, y: -0.18301274, z: -0.18301274, w: -0.6830127}
-  m_LocalPosition: {x: 4, y: 12, z: 1}
-  m_LocalScale: {x: 0.035, y: 0.035, z: 0.035}
+  m_GameObject: {fileID: 1831287604591858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 19.092255, y: 5.0082493, z: 14.087372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4899483149684212}
+  - {fileID: 4766905392507830}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 30}
---- !u!4 &4899483149684212
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4605184717997720
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152267313278646}
+  m_GameObject: {fileID: 1067216463626686}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4539231646023492}
+  m_Father: {fileID: 4766905392507830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23027817948421978
+--- !u!4 &4766905392507830
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1454990631683428}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 0.035, y: 0.035, z: 0.035}
+  m_Children:
+  - {fileID: 4605184717997720}
+  m_Father: {fileID: 4433567544540024}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
+--- !u!23 &23557033703595444
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152267313278646}
+  m_GameObject: {fileID: 1067216463626686}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -109,19 +138,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33095596318150494
+--- !u!33 &33945205921575298
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1152267313278646}
+  m_GameObject: {fileID: 1067216463626686}
   m_Mesh: {fileID: 4300000, guid: ee57a670e86eaac448c21301a4270934, type: 3}
---- !u!54 &54312709809330152
+--- !u!54 &54165666656781742
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260588639459426}
+  m_GameObject: {fileID: 1831287604591858}
   serializedVersion: 2
   m_Mass: 0.1
   m_Drag: 0
@@ -131,50 +160,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &65815073444334084
+--- !u!65 &65516469254351600
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260588639459426}
+  m_GameObject: {fileID: 1831287604591858}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 18, y: 18, z: 12}
-  m_Center: {x: -0.5, y: -2, z: 6}
---- !u!114 &114026352161093334
+  m_Size: {x: 0.6, y: 0.5, z: 0.6}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &114084422183067096
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260588639459426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4df1f56e00f2684f8ba25fca54b9871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animatedWeaponPrefab: {fileID: 1574285253163736, guid: 94bea79d0d1a2f044b87a2a717656440,
-    type: 2}
---- !u!114 &114187629389271554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260588639459426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ade3ac2d1b5db3241b6d56d3c2ae6c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  z: 0
---- !u!114 &114410545957399850
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260588639459426}
+  m_GameObject: {fileID: 1831287604591858}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f781d4d3b5639c4c90edc0d54bf5a8c, type: 3}
@@ -182,10 +185,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   z: 0
-  name: Sir Baric Nylef
+  name: Ser Baric Nylef
   hp: 23
   attackName: Maul
   attackMod: 6
   dmgDieNum: 2
   dmgDieMagnitude: 6
   dmgMod: 4
+--- !u!114 &114557767149943710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831287604591858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade3ac2d1b5db3241b6d56d3c2ae6c15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  z: 0
+--- !u!114 &114912141026326432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831287604591858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4df1f56e00f2684f8ba25fca54b9871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatedWeaponPrefab: {fileID: 1574285253163736, guid: 94bea79d0d1a2f044b87a2a717656440,
+    type: 2}
