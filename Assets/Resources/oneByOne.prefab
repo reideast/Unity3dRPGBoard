@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e0b5c7469534545bc9dabcad099d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MouseOverColor: {r: 0, g: 0.47058824, b: 1, a: 0.5882353}

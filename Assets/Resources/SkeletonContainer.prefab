@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5974425f6f5a5914fba20ae2ea581d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MouseOverColor: {r: 1, g: 0, b: 0, a: 1}
+  m_MouseOverColor: {r: 0, g: 0.47058824, b: 1, a: 0.5882353}
 --- !u!114 &114824775038884178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   z: 0
-  name: Skeleton
+  characterName: 
   hp: 15
   attackName: Spear
   attackMod: 3
