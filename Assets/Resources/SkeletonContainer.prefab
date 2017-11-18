@@ -312,8 +312,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   z: 0
-  characterName: 
-  hp: 15
+  characterName: Skeleton
+  hp: 8
+  ac: 0
   attackName: Spear
   attackMod: 3
   dmgDieNum: 1

@@ -185,8 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   z: 0
-  name: Ser Baric Nylef
+  characterName: Ser Baric Nylef
   hp: 23
+  ac: 0
   attackName: Maul
   attackMod: 6
   dmgDieNum: 2

@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour {
     // Public GameObjects to be assigned in editor
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> monsterPrefabs;
     public GameObject playerPrefab;
 
+    public GameObject menuCanvas, inGameCanvas;
+    public TMP_Text txtHP;
+
     [HideInInspector] public static GameManager instance;
     private GameObject player;
     private GameObject monster;
@@ -17,6 +21,7 @@ public class GameManager : MonoBehaviour {
     // The game board, available for inspection
     // each Space object contains a reference to a OneByOne (GameObject). Use this to find actual world unit coordinates of each game space
     [HideInInspector] public Space[,] spaces;
+    public GameObject spacesHolder; // an empty GameObject to hold all the spaces. Simply to reduce clutter...doesn't improve performance, I think
 
     // Properties of the spaces
     public int rowsX = 60, colsZ = 60;
@@ -29,39 +34,44 @@ public class GameManager : MonoBehaviour {
     private readonly float cameraSpeed = 4;
     private readonly float HOP_ANIMATION_TIME = 0.5f;
 
+    [HideInInspector] public static STATES state = STATES.MENU;
+    public enum STATES { MENU, PLAYER_TURN, MONSTER_TURN };
+
     void Start () {
         GameManager.instance = this;
         SPACE_HEIGHT_MOD = new Vector3(0f, spaceHeight, 0f);
 
+        // Generate game board made of one-by-one squares
         spaces = new Space[rowsX, colsZ];
+        GenerateSquares();
 
-        //// mess with transparency on game board squares. See: https://answers.unity.com/questions/282272/how-to-do-a-glass-cube.html
-        //Renderer r = oneByOnePrefab.AddComponent<Renderer>();
-        //r.material = new Material(Shader.Find("Transparent/Diffuse"));
-        //r.material.color = new Color(0f, 0.2f, 1f, 0.5f); // 50% alpha with a blue-green colour
+        // DEBUG
+        Invoke("StartScenarioSkeletons", 0.5f);
+    }
 
-        // Create the grid
-        MakeBoard();
+    public void OnClickStartButton() {
+        StartScenarioSkeletons();
+    }
+
+    public void StartScenarioSkeletons() {
+        // Reset the grid
+        ResetBoard();
 
         // Place some playing objects
-        PlaceTokens();
+        Invoke("PlaceTokens", 0.5f);
 
         // DEBUG: only turn on when it's the player's turn
         MouseHoverHighlight.isEffectActive = true;
     }
 
-    //private void OnDrawGizmos() {
-    //    Debug.Log("gizmos!");
-    //}
-
-    private void MakeBoard()
-    {
+    // Instantiate square objects, but don't make them active yet
+    private void GenerateSquares() {
         for (int x = 0; x < rowsX; x += (int) unitWidth) {
             for (int z = 0; z < colsZ; z += (int) unitWidth) {
                 GameObject generatedSquare = null;
                 if (x != 29 || z != 14) { // Don't make a square on the tree
-                    generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab);
-                    generatedSquare.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
+                    //generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, new Vector3(x + margin, dropFromHeight, z + margin), Quaternion.identity);
+                    generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, spacesHolder.transform);
                     OnClickMsgClickedSpace script = generatedSquare.GetComponent<OnClickMsgClickedSpace>();
                     script.x = x;
                     script.z = z;
@@ -71,18 +81,30 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Place squares back in the original position for a new game scenario
+    private void ResetBoard() {
+        for (int x = 0; x < rowsX; x += (int) unitWidth) {
+            for (int z = 0; z < colsZ; z += (int) unitWidth) {
+                if (x != 29 || z != 14) { // Don't make a square on the tree
+                    spaces[x, z].gameSpace.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
+                    spaces[x, z].gameSpace.SetActive(true);
+                }
+            }
+        }
+    }
+
     private void PlaceTokens() {
         player = (GameObject) Instantiate(instance.playerPrefab);
-        Space spaceToPlace = spaces[25, 23];
+        Space spaceToPlace = spaces[25, 25];
         Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
         player.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
         Pathfind goLocation = player.GetComponent<Pathfind>();
         goLocation.x = 25;
-        goLocation.z = 23;
+        goLocation.z = 25;
         TokenStats tokenStats = player.GetComponent<TokenStats>();
         tokenStats.x = 25;
-        tokenStats.z = 23;
-        spaces[25, 23].isBlocked = true;
+        tokenStats.z = 25;
+        spaces[25, 25].isBlocked = true;
 
         monster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
         spaceToPlace = spaces[25, 28];

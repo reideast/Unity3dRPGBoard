@@ -8,6 +8,7 @@ public class TokenStats : MonoBehaviour {
 
     public string characterName;
     public int hp;
+    public int ac;
 
     public string attackName;
     public int attackMod;
