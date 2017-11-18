@@ -256,6 +256,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f781d4d3b5639c4c90edc0d54bf5a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  z: 0
+  name: Skeleton
+  hp: 15
+  attackName: Spear
+  attackMod: 3
+  dmgDieNum: 1
+  dmgDieMagnitude: 8
+  dmgMod: 2
 --- !u!114 &114487505361827204
 MonoBehaviour:
   m_ObjectHideFlags: 1

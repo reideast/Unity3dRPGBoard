@@ -7,7 +7,8 @@ public class OnClickMsgClickedToken : MonoBehaviour {
 
     private void OnMouseDown() {
         if (MouseHoverHighlight.isEffectActive) {
-            GameManager.instance.SendMessage("MessageClickedToken", GetComponent<TokenStats>()); // Using a Vector2 to hold an X,Z because SendMessage can only handle ONE param
+            //GameManager.instance.SendMessage("MessageClickedToken", GetComponent<TokenStats>());
+            GameManager.instance.SendMessage("MessageClickedToken", this.gameObject);
         }
     }
 }

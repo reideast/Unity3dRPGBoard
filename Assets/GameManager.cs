@@ -79,6 +79,9 @@ public class GameManager : MonoBehaviour {
         Pathfind goLocation = player.GetComponent<Pathfind>();
         goLocation.x = 20;
         goLocation.z = 20;
+        TokenStats tokenStats = player.GetComponent<TokenStats>();
+        tokenStats.x = 20;
+        tokenStats.z = 20;
         spaces[20, 20].isBlocked = true;
 
         monster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
@@ -88,12 +91,23 @@ public class GameManager : MonoBehaviour {
         goLocation = monster.GetComponent<Pathfind>();
         goLocation.x = 25;
         goLocation.z = 28;
+        tokenStats = monster.GetComponent<TokenStats>();
+        tokenStats.x = 25;
+        tokenStats.z = 28;
         spaces[25, 28].isBlocked = true;
 
         // A tree!
         spaces[29, 14].isBlocked = true;
     }
 
+    // Recevied from any arbitrary GameObject with the OnClick-Message script attached
+    //public void MessageClickedToken(TokenStats ts) {
+    public void MessageClickedToken(GameObject goClicked) {
+        //WalkToken(player, ts.x, ts.z);
+        Debug.Log("trying to attack this GO:");
+        Debug.Log(goClicked);
+        player.GetComponent<TokenAttacker>().AttackTowards(goClicked);
+    }
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedSpace(Vector2 coord) {

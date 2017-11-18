@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 65815073444334084}
   - component: {fileID: 114187629389271554}
   - component: {fileID: 114410545957399850}
+  - component: {fileID: 114026352161093334}
   m_Layer: 0
   m_Name: Sir Baric Nylef
   m_TagString: Untagged
@@ -142,6 +143,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 18, y: 18, z: 12}
   m_Center: {x: -0.5, y: -2, z: 6}
+--- !u!114 &114026352161093334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1260588639459426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4df1f56e00f2684f8ba25fca54b9871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatedWeaponPrefab: {fileID: 1574285253163736, guid: 94bea79d0d1a2f044b87a2a717656440,
+    type: 2}
 --- !u!114 &114187629389271554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,3 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f781d4d3b5639c4c90edc0d54bf5a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 0
+  z: 0
+  name: Sir Baric Nylef
+  hp: 23
+  attackName: Maul
+  attackMod: 6
+  dmgDieNum: 2
+  dmgDieMagnitude: 6
+  dmgMod: 4

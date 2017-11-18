@@ -5,9 +5,17 @@ Free license
 
 Tabletop characters by Miguel Zavala on Shapeways
 https://www.shapeways.com/shops/dmworkshop
-No license listed online, but note encouraging sharing and downloading shown here: https://www.shapeways.com/designer/mz4250
+No license listed online, but author's description encouraging sharing and downloading is shown here: https://www.shapeways.com/designer/mz4250
 
 Basic Metal Texture Pack by Pockets
 https://www.assetstore.unity3d.com/en/#!/content/37402
 Free license
 
+Animations
+https://docs.unity3d.com/Manual/animeditor-AnimationEvents.html
+Walkthrough followed, by MDL Tutorials: https://www.youtube.com/watch?v=tL3qq-UBbow
+
+Unity Particle Pack by Unity Technologies
+https://www.assetstore.unity3d.com/#!/content/73777
+Free License
+Sparks tutorial https://unity3d.com/learn/tutorials/topics/graphics/creating-sparks-particle-trails

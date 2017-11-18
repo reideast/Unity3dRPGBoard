@@ -23,19 +23,19 @@ AnimationClip:
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.16666667
+        time: 0.46666667
         value: {x: 60, y: 0, z: 103}
-        inSlope: {x: -218.18181, y: 0, z: 27.272726}
-        outSlope: {x: -218.18181, y: 0, z: 27.272726}
+        inSlope: {x: -137.14285, y: 0, z: 17.142859}
+        outSlope: {x: -137.14285, y: 0, z: 17.142859}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.36666667
+        time: 0.5833333
         value: {x: -45, y: 0, z: 110}
-        inSlope: {x: -320, y: 0, z: 68.00001}
-        outSlope: {x: -320, y: 0, z: 68.00001}
+        inSlope: {x: -150, y: 0, z: 31.875002}
+        outSlope: {x: -150, y: 0, z: 31.875002}
         tangentMode: 0
       - serializedVersion: 2
-        time: 0.41666666
+        time: 1
         value: {x: -65, y: 0, z: 120}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -46,7 +46,29 @@ AnimationClip:
     path: 
   m_PositionCurves: []
   m_ScaleCurves: []
-  m_FloatCurves: []
+  m_FloatCurves:
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: 46fbd9db3e889524d85b88ea4ff7e355, type: 3}
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -62,13 +84,20 @@ AnimationClip:
       typeID: 4
       customType: 14
       isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 3305885265
+      script: {fileID: 11500000, guid: 46fbd9db3e889524d85b88ea4ff7e355, type: 3}
+      typeID: 114
+      customType: 24
+      isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.41666666
+    m_StopTime: 1.0833334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -94,19 +123,19 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.16666667
+        time: 0.46666667
         value: 60
-        inSlope: -218.18181
-        outSlope: -218.18181
+        inSlope: -137.14285
+        outSlope: -137.14285
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.36666667
+        time: 0.5833333
         value: -45
-        inSlope: -320
-        outSlope: -320
+        inSlope: -150
+        outSlope: -150
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.41666666
+        time: 1
         value: -65
         inSlope: 0
         outSlope: 0
@@ -128,19 +157,19 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.16666667
+        time: 0.46666667
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.36666667
+        time: 0.5833333
         value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.41666666
+        time: 1
         value: 0
         inSlope: 0
         outSlope: 0
@@ -162,19 +191,19 @@ AnimationClip:
         outSlope: 0
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.16666667
+        time: 0.46666667
         value: 103
-        inSlope: 27.272726
-        outSlope: 27.272726
+        inSlope: 17.142859
+        outSlope: 17.142859
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.36666667
+        time: 0.5833333
         value: 110
-        inSlope: 68.00001
-        outSlope: 68.00001
+        inSlope: 31.875002
+        outSlope: 31.875002
         tangentMode: 136
       - serializedVersion: 2
-        time: 0.41666666
+        time: 1
         value: 120
         inSlope: 0
         outSlope: 0
@@ -186,6 +215,28 @@ AnimationClip:
     path: 
     classID: 4
     script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      - serializedVersion: 2
+        time: 1
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: 
+    classID: 114
+    script: {fileID: 11500000, guid: 46fbd9db3e889524d85b88ea4ff7e355, type: 3}
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
@@ -220,4 +271,18 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.45
+    functionName: AttackEffects
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.0833334
+    functionName: RemoveWeapon
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
