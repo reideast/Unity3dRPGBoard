@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
         PlaceTokens();
 
         // DEBUG: only turn on when it's the player's turn
-        MouseOverSquareEffect.isEffectActive = true;
+        MouseHoverHighlight.isEffectActive = true;
     }
 
     //private void OnDrawGizmos() {
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
                 if (x != 29 || z != 14) { // Don't make a square on the tree
                     generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab);
                     generatedSquare.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
-                    OnClickMsgGameManager script = generatedSquare.GetComponent<OnClickMsgGameManager>();
+                    OnClickMsgClickedSpace script = generatedSquare.GetComponent<OnClickMsgClickedSpace>();
                     script.x = x;
                     script.z = z;
                 }
@@ -96,9 +96,7 @@ public class GameManager : MonoBehaviour {
 
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
-    public void MessageClick(Vector2 coord) { 
-        Debug.Log("Clicked " + coord.x + "," + coord.y);
-
+    public void MessageClickedSpace(Vector2 coord) {
         WalkToken(player, (int) coord.x, (int) coord.y); // TODO: player is for DEBUG
     }
     // Walk a player or monster token to another token
@@ -117,7 +115,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Hops left=" + hopsQueue.Count);
 
             // start the hopping at the first one. will continue until hopsQueue is empty
-            MouseOverSquareEffect.isEffectActive = false;
+            MouseHoverHighlight.isEffectActive = false;
             NextHopToken(token);
         } else {
             Debug.Log("No path to walk. Pathfinding failed");
@@ -150,7 +148,7 @@ public class GameManager : MonoBehaviour {
         } else {
             // TODO: DONE WITH HOPPING!
             Debug.Log("DEBUG: Done with hopping!");
-            MouseOverSquareEffect.isEffectActive = true;
+            MouseHoverHighlight.isEffectActive = true;
         }
     }
     private GameObject tokenToAnimate;
