@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour {
     // Properties of the spaces
     public int RowsX = 60, ColsZ = 60;
     private const float DropFromHeight = 10f;
-    private const float UnitWidth = 1;
     private const float Margin = 0.05f;
     private const float SpaceHeight = 0.2f;
     private Vector3 SPACE_HEIGHT_MOD;
@@ -61,7 +60,7 @@ public class GameManager : MonoBehaviour {
         ResetBoard();
 
         // DEBUG
-        Invoke("StartScenarioSkeletons", 1);
+        Invoke("StartScenarioSkeletons", 2);
     }
 
     public void NextTurn() {
@@ -115,6 +114,7 @@ public class GameManager : MonoBehaviour {
             ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
         } else if (newSate == STATES.MENU) {
             MouseHoverHighlight.isEffectActive = false;
+            ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
             ResetBoard(); // put the squares back in their reset position
         }
     }
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour {
             }
             Space spaceToPlace = spaces[actorData.x, actorData.z];
             Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
-            newGameObject.transform.position = new Vector3(squareBasis.x, DropFromHeight + UnitWidth, squareBasis.z);
+            newGameObject.transform.position = new Vector3(squareBasis.x, DropFromHeight + 1, squareBasis.z);
 
             TokenStats stats = newGameObject.GetComponent<TokenStats>();
             Actor newActor = new Actor(newGameObject, actorData.x, actorData.z, actorData.ActorColor, actorData.IsPlayer, stats.characterName, stats.HP, stats.AC, stats.InitativeMod, stats.Speed, stats.AttackName, stats.AttackMod, stats.DamageDiceNum,
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour {
         foreach (Actor actor in actors) {
             actor.RollInit();
         }
-        actors.Sort((a, b) => a.Initative.CompareTo(b.Initative));
+        actors.Sort((a, b) => b.Initative.CompareTo(a.Initative));
         string turnTrackerList = "";
         foreach (Actor actor in actors) {
             turnTrackerList += actor.Initative + " - " + actor.ActorName + "\n";
@@ -190,9 +190,9 @@ public class GameManager : MonoBehaviour {
     // Instantiate square objects, but don't make them active yet
     private void GenerateSquares() {
         // Set up X,Z containers
-        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
-            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
-                spaces[x, z] = new Space(x, z, null);
+        for (int x = 0; x < RowsX; x++) {
+            for (int z = 0; z < ColsZ; z++) {
+                spaces[x, z] = new Space(x, z);
             }
         }
 
@@ -202,15 +202,10 @@ public class GameManager : MonoBehaviour {
         // A big rock!
         spaces[11, 27].isBlocked = true;
 
-        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
-            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
+        for (int x = 0; x < RowsX; x++) {
+            for (int z = 0; z < ColsZ; z++) {
                 if (!spaces[x, z].isBlocked) {
-                    //generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, new Vector3(x + margin, dropFromHeight, z + margin), Quaternion.identity);
-                    GameObject generatedSquare = (GameObject) Instantiate(instance.OneByOnePrefab, SpacesHolder.transform);
-//                    OnClickMsgClickedSpace script = generatedSquare.GetComponent<OnClickMsgClickedSpace>();
-//                    script.x = x;
-//                    script.z = z;
-                    spaces[x, z].gameSpace = generatedSquare;
+                    spaces[x, z].gameSpace = (GameObject) Instantiate(instance.OneByOnePrefab, SpacesHolder.transform);
                 }
             }
         }
@@ -218,10 +213,10 @@ public class GameManager : MonoBehaviour {
 
     // Place squares back in the original position for a new game scenario
     private void ResetBoard() {
-        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
-            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
-                if (spaces[x, z].gameSpace != null) {
-                    spaces[x, z].gameSpace.transform.position += Vector3.up * DropFromHeight;
+        for (int x = 0; x < RowsX; x++) {
+            for (int z = 0; z < ColsZ; z++) {
+                if (!spaces[x, z].isBlocked) {
+                    spaces[x, z].gameSpace.transform.position = new Vector3(x + Margin, DropFromHeight, z + Margin);
                     spaces[x, z].gameSpace.SetActive(false);
                 }
             }
@@ -229,9 +224,9 @@ public class GameManager : MonoBehaviour {
     }
     // Re-activate all squares so they fall
     private void ReleaseBoard() {
-        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
-            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
-                if (spaces[x, z].gameSpace != null) {
+        for (int x = 0; x < RowsX; x++) {
+            for (int z = 0; z < ColsZ; z++) {
+                if (!spaces[x, z].isBlocked) {
                     spaces[x, z].gameSpace.SetActive(true);
                 }
             }
@@ -358,11 +353,10 @@ public class GameManager : MonoBehaviour {
 
     // A struct to hold information about the game board spaces
     public class Space {
-        public GameObject gameSpace; // public reference to the OneByOne GameObject pointed to by this space
+        public GameObject gameSpace = null; // public reference to the OneByOne GameObject pointed to by this space
         public int x, z; // public reference to this object's position in the grid
         public bool isBlocked = false; // Define if this space is impassible
-        public Space(int x, int z, GameObject gameSpace) {
-            this.gameSpace = gameSpace;
+        public Space(int x, int z) {
             this.x = x;
             this.z = z;
         }
