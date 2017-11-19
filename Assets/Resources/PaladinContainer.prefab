@@ -53,13 +53,12 @@ GameObject:
   - component: {fileID: 4433567544540024}
   - component: {fileID: 65516469254351600}
   - component: {fileID: 54165666656781742}
-  - component: {fileID: 114557767149943710}
   - component: {fileID: 114084422183067096}
   - component: {fileID: 114912141026326432}
   - component: {fileID: 114512727134296168}
   - component: {fileID: 122785132226701106}
   m_Layer: 0
-  m_Name: PlayerContainer
+  m_Name: PaladinContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,19 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5974425f6f5a5914fba20ae2ea581d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114557767149943710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1831287604591858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ade3ac2d1b5db3241b6d56d3c2ae6c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  x: 0
-  z: 0
 --- !u!114 &114912141026326432
 MonoBehaviour:
   m_ObjectHideFlags: 1

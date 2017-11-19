@@ -1,18 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-public class Pathfind : MonoBehaviour {
-    // A way for players/monsters to store their own grid coordinates. These are NOT used by the algorithm below! (It's easier to store them here than putting them in an empty script.)
-    [HideInInspector] public int x, z;
-
-
+public class Pathfind { // Does not use Unity at all, so don't extend MonoBehaviour
     /**
      * Find a path using A*, and return it as a "stack" (i.e. LinkedList, but please pop off the Front)
      * NOTE: This uses my code that I submitted for assignment 10 from CT255 that I completed in Spring of 2016.
      *          It is largely unchanged, except converting from Java -> C#
      */
-    public LinkedList<GameManager.Hop> findPath(int xFrom, int zFrom, int xTo, int zTo) {
+    public static LinkedList<GameManager.Hop> findPath(int xFrom, int zFrom, int xTo, int zTo) {
         // **** do not pathfind to own square ****
         if (xTo == xFrom && zTo == zFrom) {
             return null;

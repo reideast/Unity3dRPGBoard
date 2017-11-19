@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour {
     public TMP_Text TextCurrentActor, TextHP, TextAC, TextAtkName, TextAtkRoll, TextDmgRoll, TextSpeedLeft, TextTurnTracker;
 
     [HideInInspector] public static GameManager instance;
-    private GameObject player; // TODO: DEBUG
-    private GameObject monster; // TODO: DEBUG
 
     // Data structures to support running the game
     private List<Actor> actors;
@@ -137,19 +135,15 @@ public class GameManager : MonoBehaviour {
 
     public void StartScenarioSkeletons() {
         // Reset the scene and place the new scene's tokens
-        BuildNewScene(skeletonScene);
+        ResetAndBuildScene(skeletonScene);
 
         // Roll init and sort
         RollInit();
 
-        // TODO: remove these
-        player = actors[0].tokenRef;
-        monster = actors[1].tokenRef;
-
         NextTurn();
     }
 
-    private void BuildNewScene(SceneActor[] predefinedSceneActors) {
+    private void ResetAndBuildScene(SceneActor[] predefinedSceneActors) {
         // Reset the scene to blank
         ReleaseBoard();
         actors = new List<Actor>();
@@ -173,13 +167,8 @@ public class GameManager : MonoBehaviour {
             newGameObject.transform.position = new Vector3(squareBasis.x, DropFromHeight + UnitWidth, squareBasis.z);
 
             TokenStats stats = newGameObject.GetComponent<TokenStats>();
-            Actor newActor = new Actor(newGameObject, actorData.ActorColor, actorData.IsPlayer, stats.characterName, stats.HP, stats.AC, stats.InitativeMod, stats.Speed, stats.AttackName, stats.AttackMod, stats.DamageDiceNum,
+            Actor newActor = new Actor(newGameObject, actorData.x, actorData.z, actorData.ActorColor, actorData.IsPlayer, stats.characterName, stats.HP, stats.AC, stats.InitativeMod, stats.Speed, stats.AttackName, stats.AttackMod, stats.DamageDiceNum,
                 stats.DamageDiceMagnitude, stats.DamageMod);
-            Pathfind goLocation = newGameObject.GetComponent<Pathfind>();
-            goLocation.x = actorData.x;
-            goLocation.z = actorData.z;
-            stats.x = actorData.x; // may not be necessary??
-            stats.z = actorData.z;
             spaces[actorData.x, actorData.z].isBlocked = true;
 
             actors.Add(newActor);
@@ -200,39 +189,49 @@ public class GameManager : MonoBehaviour {
 
     // Instantiate square objects, but don't make them active yet
     private void GenerateSquares() {
+        // Set up X,Z containers
         for (int x = 0; x < RowsX; x += (int) UnitWidth) {
             for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
-                GameObject generatedSquare = null;
-                if (x != 29 || z != 14) { // Don't make a square on the tree
-                    //generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, new Vector3(x + margin, dropFromHeight, z + margin), Quaternion.identity);
-                    generatedSquare = (GameObject) Instantiate(instance.OneByOnePrefab, SpacesHolder.transform);
-                    OnClickMsgClickedSpace script = generatedSquare.GetComponent<OnClickMsgClickedSpace>();
-                    script.x = x;
-                    script.z = z;
-                }
-                spaces[x, z] = new Space(x, z, generatedSquare);
+                spaces[x, z] = new Space(x, z, null);
             }
         }
 
+        // Block any spaces that are impassible
         // A tree!
         spaces[29, 14].isBlocked = true;
+        // A big rock!
+        spaces[11, 27].isBlocked = true;
+
+        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
+            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
+                if (!spaces[x, z].isBlocked) {
+                    //generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, new Vector3(x + margin, dropFromHeight, z + margin), Quaternion.identity);
+                    GameObject generatedSquare = (GameObject) Instantiate(instance.OneByOnePrefab, SpacesHolder.transform);
+//                    OnClickMsgClickedSpace script = generatedSquare.GetComponent<OnClickMsgClickedSpace>();
+//                    script.x = x;
+//                    script.z = z;
+                    spaces[x, z].gameSpace = generatedSquare;
+                }
+            }
+        }
     }
 
     // Place squares back in the original position for a new game scenario
     private void ResetBoard() {
         for (int x = 0; x < RowsX; x += (int) UnitWidth) {
             for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
-                if (x != 29 || z != 14) { // Don't make a square on the tree
-                    spaces[x, z].gameSpace.transform.position = new Vector3(x + Margin, DropFromHeight, z + Margin);
+                if (spaces[x, z].gameSpace != null) {
+                    spaces[x, z].gameSpace.transform.position += Vector3.up * DropFromHeight;
                     spaces[x, z].gameSpace.SetActive(false);
                 }
             }
         }
     }
+    // Re-activate all squares so they fall
     private void ReleaseBoard() {
         for (int x = 0; x < RowsX; x += (int) UnitWidth) {
             for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
-                if (x != 29 || z != 14) { // Don't make a square on the tree
+                if (spaces[x, z].gameSpace != null) {
                     spaces[x, z].gameSpace.SetActive(true);
                 }
             }
@@ -241,6 +240,7 @@ public class GameManager : MonoBehaviour {
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedToken(GameObject goClicked) {
+        Debug.Log("Attacking! " + goClicked);
         // Check if attack is possible
 
         // Do attack mechanics
@@ -255,32 +255,29 @@ public class GameManager : MonoBehaviour {
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedSpace(Vector2 coord) {
-        WalkToken(actors[currentActorTurn].tokenRef, (int) coord.x, (int) coord.y);
+        WalkActor(actors[currentActorTurn], (int) coord.x, (int) coord.y);
     }
     // Walk a player or monster token to a space
-    private void WalkToken(GameObject token, int xTo, int zTo) {
+    private void WalkActor(Actor actor, int xTo, int zTo) {
         // Find a path to the desired square, by getting a queue of sqaures to hop over
-        Pathfind tokenPositionScript = token.GetComponent<Pathfind>();
-        hopsQueue = tokenPositionScript.findPath(tokenPositionScript.x, tokenPositionScript.z, xTo, zTo);
+        hopsQueue = Pathfind.findPath(actor.x, actor.z, xTo, zTo);
 
         if (hopsQueue != null) {
             if (hopsQueue.Count > currentTurnStats.MovementLeft) {
                 PopupTextController.PopupText("Not Enough Movement", spaces[xTo, zTo].gameSpace.transform);
             } else {
-                SetState(STATES.ANIMATING_ACTION);
                 // change the token's stored properties to its final position
-                spaces[tokenPositionScript.x, tokenPositionScript.z].isBlocked = false;
-                tokenPositionScript.x = xTo;
-                tokenPositionScript.z = zTo;
+                spaces[actor.x, actor.z].isBlocked = false;
+                actor.x = xTo;
+                actor.z = zTo;
                 spaces[xTo, zTo].isBlocked = true;
 
-                Debug.Log("Hops left=" + hopsQueue.Count);
-
                 // start the hopping at the first one. will continue until hopsQueue is empty
-                NextHopToken(token);
+                SetState(STATES.ANIMATING_ACTION);
+                NextHopToken(actor.tokenRef);
             }
         } else {
-            Debug.Log("No path to walk. Pathfinding failed");
+                PopupTextController.PopupText("Pathfinding failed", spaces[xTo, zTo].gameSpace.transform);
         }
     }
     public class Hop {
@@ -309,7 +306,6 @@ public class GameManager : MonoBehaviour {
             tokenToAnimate = token;
             startTime = Time.time;
             endTime = startTime + HOP_ANIMATION_TIME;
-            Debug.Log("Hopping from (" + nextHop.xFrom + "," + nextHop.zFrom + ") to (" + nextHop.xTo + "," + nextHop.zTo + "). Hops still in queue =" + hopsQueue.Count);
             InvokeRepeating("SingleHopAnimationLoop", 0f, 0.01f);
         } else {
             SetState(STATES.AWAITING_INPUT);
@@ -392,6 +388,7 @@ public class GameManager : MonoBehaviour {
     // A list of these will make up a scene
     public class Actor {
         public GameObject tokenRef;
+        public int x, z;
         public bool IsPlyaer;
         public bool IsAlive = true;
         public string ActorName;
@@ -400,8 +397,10 @@ public class GameManager : MonoBehaviour {
         public string AttackName;
         public int AttackMod, DamageDieNum, DamageDieMagnitude, DamageMod;
         public Color ActorColor; // the colour to surround this token with indicating it is the active Actor, and to use as the cursor highlight
-        public Actor(GameObject tokenRef, Color actorColor, bool isPlyaer, string actorName, int hp, int ac, int initativeMod, int speed, string attackName, int attackMod, int damageDieNum, int damageDieMagnitude, int damageMod) {
+        public Actor(GameObject tokenRef, int x, int z, Color actorColor, bool isPlyaer, string actorName, int hp, int ac, int initativeMod, int speed, string attackName, int attackMod, int damageDieNum, int damageDieMagnitude, int damageMod) {
             this.tokenRef = tokenRef;
+            this.x = x;
+            this.z = z;
             ActorColor = actorColor;
             IsPlyaer = isPlyaer;
             ActorName = actorName;
