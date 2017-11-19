@@ -200,7 +200,22 @@ public class GameManager : MonoBehaviour {
         // A tree!
         spaces[29, 14].isBlocked = true;
         // A big rock!
-        spaces[11, 27].isBlocked = true;
+        spaces[12, 32].isBlocked = true;
+        spaces[13, 25].isBlocked = true;
+        spaces[13, 26].isBlocked = true;
+        spaces[13, 32].isBlocked = true;
+        spaces[14, 26].isBlocked = true;
+        spaces[14, 27].isBlocked = true;
+        spaces[14, 28].isBlocked = true;
+        spaces[14, 29].isBlocked = true;
+        spaces[14, 30].isBlocked = true;
+        spaces[14, 31].isBlocked = true;
+        spaces[14, 32].isBlocked = true;
+        spaces[15, 27].isBlocked = true;
+        spaces[15, 28].isBlocked = true;
+        spaces[15, 29].isBlocked = true;
+        spaces[15, 30].isBlocked = true;
+        spaces[15, 31].isBlocked = true;
 
         for (int x = 0; x < RowsX; x++) {
             for (int z = 0; z < ColsZ; z++) {
