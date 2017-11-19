@@ -1,28 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// A struct to define the stats of this Token. Set in the Inspector
 public class TokenStats : MonoBehaviour {
 
     [HideInInspector] public int x, z;
 
     public string characterName;
-    public int hp;
-    public int ac;
+    public int HP;
+    public int AC;
+    public int InitativeMod;
+    public int Speed;
 
-    public string attackName;
-    public int attackMod;
-    public int dmgDieNum;
-    public int dmgDieMagnitude;
-    public int dmgMod;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public string AttackName;
+    public int AttackMod;
+    public int DamageDiceNum;
+    public int DamageDiceMagnitude;
+    public int DamageMod;
 }

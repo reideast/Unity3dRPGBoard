@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class OnClickMsgClickedToken : MonoBehaviour {
     [HideInInspector] public int x, z;
 
     private void OnMouseDown() {
-        if (MouseHoverHighlight.isEffectActive) {
+        if (!EventSystem.current.IsPointerOverGameObject() && MouseHoverHighlight.isEffectActive) {
             //GameManager.instance.SendMessage("MessageClickedToken", GetComponent<TokenStats>());
             GameManager.instance.SendMessage("MessageClickedToken", this.gameObject);
         }

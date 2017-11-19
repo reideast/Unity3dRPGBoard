@@ -313,13 +313,15 @@ MonoBehaviour:
   x: 0
   z: 0
   characterName: Skeleton
-  hp: 8
-  ac: 0
-  attackName: Spear
-  attackMod: 3
-  dmgDieNum: 1
-  dmgDieMagnitude: 8
-  dmgMod: 2
+  HP: 8
+  AC: 12
+  InitativeMod: 4
+  Speed: 6
+  AttackName: Spear
+  AttackMod: 2
+  DamageDiceNum: 1
+  DamageDiceMagnitude: 8
+  DamageMod: 1
 --- !u!114 &114950168418132614
 MonoBehaviour:
   m_ObjectHideFlags: 1

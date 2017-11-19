@@ -187,13 +187,15 @@ MonoBehaviour:
   x: 0
   z: 0
   characterName: Ser Baric Nylef
-  hp: 23
-  ac: 18
-  attackName: Maul
-  attackMod: 6
-  dmgDieNum: 2
-  dmgDieMagnitude: 6
-  dmgMod: 4
+  HP: 23
+  AC: 18
+  InitativeMod: 1
+  Speed: 6
+  AttackName: Maul
+  AttackMod: 5
+  DamageDiceNum: 2
+  DamageDiceMagnitude: 8
+  DamageMod: 3
 --- !u!114 &114557767149943710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,5 +231,5 @@ Halo:
   m_Enabled: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4294932480
+    rgba: 2533324800
   m_Size: 0.75
