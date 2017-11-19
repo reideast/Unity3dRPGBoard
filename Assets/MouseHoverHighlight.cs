@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 // Script is taken from Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnMouseOver.html
-// THIS IS NOT MY CODE!
+// Modifed to have its hovor colour modified from an outside script
 public class MouseHoverHighlight : MonoBehaviour {
 
     public static bool isEffectActive = false;
@@ -10,7 +10,7 @@ public class MouseHoverHighlight : MonoBehaviour {
     //Ensure the GameObject has a MeshRenderer
 
     //When the mouse hovers over the GameObject, it turns to this color (red)
-    public Color m_MouseOverColor = Color.red;
+    [HideInInspector] public static Color MouseOverColor = Color.red;
     //This stores the GameObject’s original color
     private Color m_OriginalColor;
     //Get the GameObject’s mesh renderer to access the GameObject’s material and color
@@ -28,7 +28,7 @@ public class MouseHoverHighlight : MonoBehaviour {
     {
         //Change the color of the GameObject to red when the mouse is over GameObject
         if (isEffectActive) {
-            m_Renderer.material.color = m_MouseOverColor;
+            m_Renderer.material.color = MouseOverColor;
         } else {
             m_Renderer.material.color = m_OriginalColor;
         } 

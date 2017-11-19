@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114950168418132614}
   - component: {fileID: 114824775038884178}
   - component: {fileID: 114616230461268184}
+  - component: {fileID: 122672664807919596}
   m_Layer: 0
   m_Name: SkeletonContainer
   m_TagString: Untagged
@@ -298,7 +299,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5974425f6f5a5914fba20ae2ea581d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MouseOverColor: {r: 0, g: 0.47058824, b: 1, a: 0.5882353}
 --- !u!114 &114824775038884178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,3 +333,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   z: 0
+--- !u!122 &122672664807919596
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1624308377411796}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278190335
+  m_Size: 0.75

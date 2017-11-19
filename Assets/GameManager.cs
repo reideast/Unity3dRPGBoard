@@ -1,52 +1,65 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
 public class GameManager : MonoBehaviour {
     // Public GameObjects to be assigned in editor
-    public GameObject oneByOnePrefab;
-    public Camera camera;
-    public List<GameObject> monsterPrefabs;
-    public GameObject playerPrefab;
+    public GameObject OneByOnePrefab;
+    public Camera Camera;
+    public List<GameObject> MonsterPrefabsList;
+    public List<GameObject> PlayerPrefabList;
 
-    public GameObject menuCanvas, inGameCanvas;
-    public TMP_Text txtHP;
+    public GameObject MenuCanvas, InGameCanvas;
+    public TMP_Text TextCurrentActor, TextHP, TextAC, TextAtkName, TextAtkRoll, TextDmgRoll, TextTurnTracker;
 
     [HideInInspector] public static GameManager instance;
-    private GameObject player;
-    private GameObject monster;
+    private GameObject player; // TODO: DEBUG
+    private GameObject monster; // TODO: DEBUG
+
+    // Data structures to support running the game
+    private List<Actor> actors;
+    private int currentActorTurn;
+//    [HideInInspector] public static STATES state = STATES.MENU;
+    [HideInInspector] public static STATES state = STATES.AWAITING_INPUT; // TODO: DEBUG
+    public enum STATES { MENU, AWAITING_INPUT, ANIMATING_ACTION };
+
+    // Predefined Scenarios
+    private SceneActor[] skeletonScene;
+    private SceneActor[] OTHERScene; // TODO: Make this one, too!
 
     // The game board, available for inspection
     // each Space object contains a reference to a OneByOne (GameObject). Use this to find actual world unit coordinates of each game space
     [HideInInspector] public Space[,] spaces;
-    public GameObject spacesHolder; // an empty GameObject to hold all the spaces. Simply to reduce clutter...doesn't improve performance, I think
+    public GameObject SpacesHolder; // an empty GameObject to hold all the spaces. Simply to reduce clutter...doesn't improve performance, I think
 
     // Properties of the spaces
-    public int rowsX = 60, colsZ = 60;
-    private readonly float dropFromHeight = 10f;
-    private readonly float unitWidth = 1;
-    private readonly float margin = 0.05f;
-    private readonly float spaceHeight = 0.2f;
+    public int RowsX = 60, ColsZ = 60;
+    private const float DropFromHeight = 10f;
+    private const float UnitWidth = 1;
+    private const float Margin = 0.05f;
+    private const float SpaceHeight = 0.2f;
     private Vector3 SPACE_HEIGHT_MOD;
 
-    private readonly float cameraSpeed = 4;
-    private readonly float HOP_ANIMATION_TIME = 0.5f;
+    private const float cameraSpeed = 4;
+    private const float HOP_ANIMATION_TIME = 0.5f;
 
-    [HideInInspector] public static STATES state = STATES.MENU;
-    public enum STATES { MENU, PLAYER_TURN, MONSTER_TURN };
 
     void Start () {
         GameManager.instance = this;
-        SPACE_HEIGHT_MOD = new Vector3(0f, spaceHeight, 0f);
+        SPACE_HEIGHT_MOD = new Vector3(0f, SpaceHeight, 0f);
+
+        // Build the predefined scenarios
+        skeletonScene = new SceneActor[] {
+            new SceneActor(true, 0, 25, 25, new Color(0, 120f, 255f, 150f)),
+            new SceneActor(false, 0, 25, 28, new Color(255f, 0, 0, 150f))
+        };
 
         // Generate game board made of one-by-one squares
-        spaces = new Space[rowsX, colsZ];
+        spaces = new Space[RowsX, ColsZ];
         GenerateSquares();
 
         // DEBUG
-        Invoke("StartScenarioSkeletons", 0.5f);
+        Invoke("StartScenarioSkeletons", 1);
     }
 
     public void OnClickStartButton() {
@@ -57,21 +70,54 @@ public class GameManager : MonoBehaviour {
         // Reset the grid
         ResetBoard();
 
-        // Place some playing objects
-        Invoke("PlaceTokens", 0.5f);
+        // Reset the array of actors
+        actors = new List<Actor>();
+
+        // Place the scene's actors
+        BuildActiveTokensFromScene(skeletonScene);
+
+        player = actors[0].tokenRef;
+        monster = actors[1].tokenRef;
 
         // DEBUG: only turn on when it's the player's turn
         MouseHoverHighlight.isEffectActive = true;
     }
 
+    private void BuildActiveTokensFromScene(SceneActor[] predefinedSceneActors) {
+        foreach (SceneActor actorData in predefinedSceneActors) {
+            // Create GameObject and place it in the correct square
+            GameObject newGameObject;
+            if (actorData.IsPlayer) {
+                newGameObject = (GameObject) Instantiate(instance.PlayerPrefabList[actorData.PrefabIndex]);
+            } else {
+                newGameObject = (GameObject) Instantiate(instance.MonsterPrefabsList[actorData.PrefabIndex]);
+            }
+            Space spaceToPlace = spaces[actorData.x, actorData.z];
+            Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
+            newGameObject.transform.position = new Vector3(squareBasis.x, DropFromHeight + UnitWidth, squareBasis.z);
+
+            TokenStats stats = newGameObject.GetComponent<TokenStats>();
+            Actor newActor = new Actor(newGameObject, actorData.IsPlayer, stats.characterName, stats.hp, stats.ac, stats.attackName, stats.attackMod, stats.dmgDieNum,
+                stats.dmgDieMagnitude, stats.attackMod, actorData.ActorColor);
+            Pathfind goLocation = newGameObject.GetComponent<Pathfind>();
+            goLocation.x = actorData.x;
+            goLocation.z = actorData.z;
+            stats.x = actorData.x; // may not be necessary??
+            stats.z = actorData.z;
+            spaces[actorData.x, actorData.z].isBlocked = true;
+
+            actors.Add(newActor);
+        }
+    }
+
     // Instantiate square objects, but don't make them active yet
     private void GenerateSquares() {
-        for (int x = 0; x < rowsX; x += (int) unitWidth) {
-            for (int z = 0; z < colsZ; z += (int) unitWidth) {
+        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
+            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
                 GameObject generatedSquare = null;
                 if (x != 29 || z != 14) { // Don't make a square on the tree
                     //generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, new Vector3(x + margin, dropFromHeight, z + margin), Quaternion.identity);
-                    generatedSquare = (GameObject) Instantiate(instance.oneByOnePrefab, spacesHolder.transform);
+                    generatedSquare = (GameObject) Instantiate(instance.OneByOnePrefab, SpacesHolder.transform);
                     OnClickMsgClickedSpace script = generatedSquare.GetComponent<OnClickMsgClickedSpace>();
                     script.x = x;
                     script.z = z;
@@ -79,47 +125,21 @@ public class GameManager : MonoBehaviour {
                 spaces[x, z] = new Space(x, z, generatedSquare);
             }
         }
+
+        // A tree!
+        spaces[29, 14].isBlocked = true;
     }
 
     // Place squares back in the original position for a new game scenario
     private void ResetBoard() {
-        for (int x = 0; x < rowsX; x += (int) unitWidth) {
-            for (int z = 0; z < colsZ; z += (int) unitWidth) {
+        for (int x = 0; x < RowsX; x += (int) UnitWidth) {
+            for (int z = 0; z < ColsZ; z += (int) UnitWidth) {
                 if (x != 29 || z != 14) { // Don't make a square on the tree
-                    spaces[x, z].gameSpace.transform.position = new Vector3(x + margin, dropFromHeight, z + margin);
+                    spaces[x, z].gameSpace.transform.position = new Vector3(x + Margin, DropFromHeight, z + Margin);
                     spaces[x, z].gameSpace.SetActive(true);
                 }
             }
         }
-    }
-
-    private void PlaceTokens() {
-        player = (GameObject) Instantiate(instance.playerPrefab);
-        Space spaceToPlace = spaces[25, 25];
-        Vector3 squareBasis = spaceToPlace.gameSpace.transform.position;
-        player.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
-        Pathfind goLocation = player.GetComponent<Pathfind>();
-        goLocation.x = 25;
-        goLocation.z = 25;
-        TokenStats tokenStats = player.GetComponent<TokenStats>();
-        tokenStats.x = 25;
-        tokenStats.z = 25;
-        spaces[25, 25].isBlocked = true;
-
-        monster = (GameObject) Instantiate(instance.monsterPrefabs[0]);
-        spaceToPlace = spaces[25, 28];
-        squareBasis = spaceToPlace.gameSpace.transform.position;
-        monster.transform.position = new Vector3(squareBasis.x, dropFromHeight + unitWidth, squareBasis.z);
-        goLocation = monster.GetComponent<Pathfind>();
-        goLocation.x = 25;
-        goLocation.z = 28;
-        tokenStats = monster.GetComponent<TokenStats>();
-        tokenStats.x = 25;
-        tokenStats.z = 28;
-        spaces[25, 28].isBlocked = true;
-
-        // A tree!
-        spaces[29, 14].isBlocked = true;
     }
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
@@ -152,6 +172,7 @@ public class GameManager : MonoBehaviour {
 
             // start the hopping at the first one. will continue until hopsQueue is empty
             MouseHoverHighlight.isEffectActive = false;
+            ((Behaviour) token.GetComponent("Halo")).enabled = false;
             NextHopToken(token);
         } else {
             Debug.Log("No path to walk. Pathfinding failed");
@@ -185,6 +206,7 @@ public class GameManager : MonoBehaviour {
             // TODO: DONE WITH HOPPING!
             Debug.Log("DEBUG: Done with hopping!");
             MouseHoverHighlight.isEffectActive = true;
+            ((Behaviour) token.GetComponent("Halo")).enabled = true;
         }
     }
     private GameObject tokenToAnimate;
@@ -208,7 +230,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Update is called once per frame
     void Update () {
         float deltaX = 0f, deltaZ = 0f;
 
@@ -228,7 +249,7 @@ public class GameManager : MonoBehaviour {
             deltaZ += cameraSpeed * Time.deltaTime;
         }
         if (deltaX != 0f || deltaZ != 0f) {
-            camera.transform.position = new Vector3(camera.transform.position.x + deltaX, camera.transform.position.y, camera.transform.position.z + deltaZ);
+            Camera.transform.position = new Vector3(Camera.transform.position.x + deltaX, Camera.transform.position.y, Camera.transform.position.z + deltaZ);
         }
 	}
 
@@ -241,6 +262,47 @@ public class GameManager : MonoBehaviour {
             this.gameSpace = gameSpace;
             this.x = x;
             this.z = z;
+        }
+    }
+
+    // A class to have a token's initial position and properties. Several of these will make up a prebuild scenario
+    public class SceneActor {
+        public bool IsPlayer; // grab GameObject from player list or monster list
+        public int PrefabIndex; // which item in the list of players/monsters does this Actor refer to?
+        public int x, z; // location on the grid to start the token
+        public Color ActorColor;
+        public SceneActor(bool isPlayer, int prefabIndex, int x, int z, Color actorColor) {
+            IsPlayer = isPlayer;
+            PrefabIndex = prefabIndex;
+            this.x = x;
+            this.z = z;
+            ActorColor = actorColor;
+        }
+    }
+
+    // A struct to hold an actor on the game board
+    // A list of these will make up a scene
+    public class Actor {
+        public GameObject tokenRef;
+        public bool IsPlyaer;
+        public bool IsAlive = true;
+        public string ActorName;
+        public int HP, AC;
+        public string AttackName;
+        public int AttackMod, DamageDieNum, DamageDieMagnitude, DamageMod;
+        public Color ActorColor; // the colour to surround this token with indicating it is the active Actor, and to use as the cursor highlight
+        public Actor(GameObject tokenRef, bool isPlyaer, string actorName, int hp, int ac, string attackName, int attackMod, int damageDieNum, int damageDieMagnitude, int damageMod, Color actorColor) {
+            this.tokenRef = tokenRef;
+            IsPlyaer = isPlyaer;
+            ActorName = actorName;
+            HP = hp;
+            AC = ac;
+            AttackName = attackName;
+            AttackMod = attackMod;
+            DamageDieNum = damageDieNum;
+            DamageDieMagnitude = damageDieMagnitude;
+            DamageMod = damageMod;
+            ActorColor = actorColor;
         }
     }
 }

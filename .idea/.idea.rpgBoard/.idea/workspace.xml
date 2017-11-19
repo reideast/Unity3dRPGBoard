@@ -2,7 +2,85 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d19f23ac-97e8-40a5-9905-029371359fa0" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Resources/oneByOne.prefab" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/Resources/oneByOne.prefab.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark01.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark01.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark01_UGUI.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark01_UGUI.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark02.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark02.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark03.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark03.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark04.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/Benchmark04.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/CameraController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/CameraController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/ChatController.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/ChatController.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/EnvMapAnimator.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/EnvMapAnimator.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/ObjectSpin.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/ObjectSpin.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/ShaderPropAnimator.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/ShaderPropAnimator.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/SimpleScript.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/SimpleScript.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/SkewTextExample.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/SkewTextExample.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_DigitValidator.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_DigitValidator.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_ExampleScript_01.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_ExampleScript_01.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_FrameRateCounter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_FrameRateCounter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextEventCheck.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextEventCheck.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextEventHandler.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextEventHandler.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextInfoDebugTool.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextInfoDebugTool.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextSelector_A.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextSelector_A.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextSelector_B.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_TextSelector_B.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_UiFrameRateCounter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_UiFrameRateCounter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMPro_InstructionOverlay.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMPro_InstructionOverlay.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TeleType.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TeleType.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TextConsoleSimulator.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TextConsoleSimulator.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TextMeshProFloatingText.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TextMeshProFloatingText.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TextMeshSpawner.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TextMeshSpawner.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexColorCycler.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexColorCycler.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexJitter.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexJitter.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexShakeA.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexShakeA.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexShakeB.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexShakeB.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexZoom.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/VertexZoom.cs.meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/WarpTextExample.cs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/WarpTextExample.cs.meta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.rpgBoard/.idea/contentModel.xml" afterPath="$PROJECT_DIR$/.idea/.idea.rpgBoard/.idea/contentModel.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.idea.rpgBoard/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/.idea.rpgBoard/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/GameManager.cs" afterPath="$PROJECT_DIR$/Assets/GameManager.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/MouseHoverHighlight.cs" afterPath="$PROJECT_DIR$/Assets/MouseHoverHighlight.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/MouseHoverHighlightChildren.cs" afterPath="$PROJECT_DIR$/Assets/MouseHoverHighlightChildren.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Pathfind.cs" afterPath="$PROJECT_DIR$/Assets/Pathfind.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Resources/PlayerContainer.prefab" afterPath="$PROJECT_DIR$/Assets/Resources/PlayerContainer.prefab" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/Resources/SkeletonContainer.prefab" afterPath="$PROJECT_DIR$/Assets/Resources/SkeletonContainer.prefab" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples.meta" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assets/rpgBoardScene.unity" afterPath="$PROJECT_DIR$/Assets/rpgBoardScene.unity" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/attribution.txt" afterPath="$PROJECT_DIR$/attribution.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,22 +92,140 @@
   <component name="FavoritesManager">
     <favorites_list name="rpgBoard" />
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="GameManager.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="27" column="64" lean-forward="false" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+              <folding>
+                <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+                <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+                <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+                <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+                <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+                <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+                <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+                <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+                <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MouseHoverHighlight.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/MouseHoverHighlight.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="68" lean-forward="false" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
+              <folding>
+                <marker date="1511088695002" expanded="true" signature="20:195" ph="/* Script is taken from Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnMouseOver.html ... */" />
+                <marker date="1511088695002" expanded="true" signature="245:1488" ph="{...}" />
+                <marker date="1511088695002" expanded="true" signature="300:515" ph="/* This second example changes the GameObject's color to red when the mouse hovers over it ... */" />
+                <marker date="1511088695002" expanded="true" signature="812:1045" ph="{...}" />
+                <marker date="1511088695002" expanded="true" signature="1069:1338" ph="{...}" />
+                <marker date="1511088695002" expanded="true" signature="1190:1257" ph="{...}" />
+                <marker date="1511088695002" expanded="true" signature="1362:1486" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MouseHoverHighlightChildren.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/MouseHoverHighlightChildren.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="14" column="62" lean-forward="false" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+              <folding>
+                <marker date="1511090282920" expanded="false" signature="6:78" ph="..." />
+                <marker date="1511090282920" expanded="true" signature="80:248" ph="/* Script is taken from Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnMouseOver.html ... */" />
+                <marker date="1511090282920" expanded="true" signature="312:2049" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="320:430" ph="/* uses MouseHoverHighlight.MouseOverColor to change colour ... */" />
+                <marker date="1511090282920" expanded="true" signature="674:1040" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="960:1034" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="1064:1707" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="1205:1418" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="1314:1408" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="1621:1690" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="1731:2047" ph="{...}" />
+                <marker date="1511090282920" expanded="true" signature="1980:2041" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MouseHoverHighlightChildren.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MouseHoverHighlight.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/MouseHoverHighlight.cs" />
+        <option value="$PROJECT_DIR$/Assets/MouseHoverHighlightChildren.cs" />
+        <option value="$PROJECT_DIR$/Assets/GameManager.cs" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="55" />
-    <option name="width" value="666" />
-    <option name="height" value="775" />
+    <option name="x" value="984" />
+    <option name="width" value="943" />
+    <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -49,7 +245,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -57,16 +252,30 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="rpgBoard (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="rpgBoard (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="rpgBoard (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assets" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -86,6 +295,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="d19f23ac-97e8-40a5-9905-029371359fa0" name="Default" comment="" />
@@ -98,11 +310,15 @@
       <workItem from="1511046164778" duration="337000" />
       <workItem from="1511047041448" duration="444000" />
       <workItem from="1511047532794" duration="546000" />
+      <workItem from="1511048136401" duration="49000" />
+      <workItem from="1511048366679" duration="90000" />
+      <workItem from="1511082718694" duration="829000" />
+      <workItem from="1511083815193" duration="8452000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1557000" />
+    <option name="totallyTimeSpent" value="10977000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -115,8 +331,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2497309" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3396779" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858595" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -147,5 +364,529 @@
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples/Scripts/TMP_DigitValidator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/MouseHoverHighlightChildren.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="62" lean-forward="false" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+          <folding>
+            <marker date="1511090282920" expanded="false" signature="6:78" ph="..." />
+            <marker date="1511090282920" expanded="true" signature="80:248" ph="/* Script is taken from Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnMouseOver.html ... */" />
+            <marker date="1511090282920" expanded="true" signature="312:2049" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="320:430" ph="/* uses MouseHoverHighlight.MouseOverColor to change colour ... */" />
+            <marker date="1511090282920" expanded="true" signature="674:1040" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="960:1034" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="1064:1707" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="1205:1418" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="1314:1408" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="1621:1690" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="1731:2047" ph="{...}" />
+            <marker date="1511090282920" expanded="true" signature="1980:2041" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/MouseHoverHighlight.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="68" lean-forward="false" selection-start-line="12" selection-start-column="68" selection-end-line="12" selection-end-column="68" />
+          <folding>
+            <marker date="1511088695002" expanded="true" signature="20:195" ph="/* Script is taken from Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnMouseOver.html ... */" />
+            <marker date="1511088695002" expanded="true" signature="245:1488" ph="{...}" />
+            <marker date="1511088695002" expanded="true" signature="300:515" ph="/* This second example changes the GameObject's color to red when the mouse hovers over it ... */" />
+            <marker date="1511088695002" expanded="true" signature="812:1045" ph="{...}" />
+            <marker date="1511088695002" expanded="true" signature="1069:1338" ph="{...}" />
+            <marker date="1511088695002" expanded="true" signature="1190:1257" ph="{...}" />
+            <marker date="1511088695002" expanded="true" signature="1362:1486" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/GameManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="27" column="64" lean-forward="false" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+          <folding>
+            <marker date="1511093353435" expanded="true" signature="6:65" ph="..." />
+            <marker date="1511093353435" expanded="true" signature="108:13972" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="1110:1293" ph="/* The game board, available for inspection ... */" />
+            <marker date="1511093353435" expanded="true" signature="1879:2423" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2063:2225" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2462:2503" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="2546:2950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3032:4442" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3098:4436" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="3242:3365" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4545:5424" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4604:5357" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4667:5347" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4760:5268" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="4762:4961" ph="/* Don't make a square on the tree ... */" />
+            <marker date="1511093353435" expanded="true" signature="5531:5956" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5590:5950" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5653:5940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5695:5926" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="5962:6099" ph="/* Recevied from any arbitrary GameObject with the OnClick-Message script attached ... */" />
+            <marker date="1511093353435" expanded="true" signature="6158:6355" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6495:6588" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="6707:7695" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7006:7610" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="7717:7902" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8061:9520" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="8139:9281" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9706:10677" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9741:10223" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="9755:10010" ph="/* Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3. ... */" />
+            <marker date="1511093353435" expanded="true" signature="10243:10582" ph="/* tokenToAnimate.transform.position = endPos; ... */" />
+            <marker date="1511093353435" expanded="true" signature="10698:11608" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10825:10940" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="10975:11090" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11128:11243" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11278:11393" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11436:11605" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="11697:12130" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12025:12124" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12276:12829" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12655:12823" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="12835:12925" ph="/* A struct to hold an actor on the game board ... */" />
+            <marker date="1511093353435" expanded="true" signature="12949:13970" ph="{...}" />
+            <marker date="1511093353435" expanded="true" signature="13567:13964" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

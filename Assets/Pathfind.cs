@@ -19,13 +19,13 @@ public class Pathfind : MonoBehaviour {
         }
 
         // **** create data structures ****
-        Node[,] nodes = new Node[GameManager.instance.rowsX, GameManager.instance.colsZ];
+        Node[,] nodes = new Node[GameManager.instance.RowsX, GameManager.instance.ColsZ];
         LinkedList<Node> openList = new LinkedList<Node>();
 
         // **** set initial conditions ****
         // create node objects and set walls to closed
-        for (int row = 0; row < GameManager.instance.rowsX; ++row) {
-            for (int col = 0; col < GameManager.instance.colsZ; ++col) {
+        for (int row = 0; row < GameManager.instance.RowsX; ++row) {
+            for (int col = 0; col < GameManager.instance.ColsZ; ++col) {
                 nodes[col, row] = new Node();
                 nodes[col, row].x = col;
                 nodes[col, row].z = row;
@@ -68,11 +68,11 @@ public class Pathfind : MonoBehaviour {
 
             // 4. add all nodes surrounding current to open list, pointing back to current
             for (int deltaRow = -1; deltaRow <= 1; ++deltaRow) {
-                if (curr.z + deltaRow == -1 || curr.z + deltaRow == GameManager.instance.rowsX) {
+                if (curr.z + deltaRow == -1 || curr.z + deltaRow == GameManager.instance.RowsX) {
                     continue;
                 }
                 for (int deltaCol = -1; deltaCol <= 1; ++deltaCol) {
-                    if (curr.x + deltaCol == -1 || curr.x + deltaCol == GameManager.instance.colsZ) {
+                    if (curr.x + deltaCol == -1 || curr.x + deltaCol == GameManager.instance.ColsZ) {
                         continue;
                     }
                     nearby = nodes[curr.x + deltaCol, curr.z + deltaRow];

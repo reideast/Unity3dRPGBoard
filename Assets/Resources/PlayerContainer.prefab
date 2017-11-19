@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 114912141026326432}
   - component: {fileID: 65516469254351600}
   - component: {fileID: 54165666656781742}
+  - component: {fileID: 122785132226701106}
   m_Layer: 0
   m_Name: PlayerContainer
   m_TagString: Untagged
@@ -187,7 +188,7 @@ MonoBehaviour:
   z: 0
   characterName: Ser Baric Nylef
   hp: 23
-  ac: 0
+  ac: 18
   attackName: Maul
   attackMod: 6
   dmgDieNum: 2
@@ -219,3 +220,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatedWeaponPrefab: {fileID: 1626496607049686, guid: 37f5e4f4b33c701449433d98f473c3b3,
     type: 2}
+--- !u!122 &122785132226701106
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831287604591858}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294932480
+  m_Size: 0.75
