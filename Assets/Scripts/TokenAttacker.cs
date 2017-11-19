@@ -5,10 +5,10 @@ using UnityEngine;
 public class TokenAttacker : MonoBehaviour {
     public GameObject animatedWeaponPrefab;
 
-    public void AttackTowards(GameObject victim) {
+    public void AttackTowards(Transform victim) {
         // Face the GO that's being attacked by creating a point that is in the victim's X and Z, but locked to the current Y (so token doesn't tilt).
         //    See: https://answers.unity.com/answers/250578/view.html
-        Vector3 victimSpotLevelled = new Vector3(victim.transform.position.x, this.transform.position.y, victim.transform.position.z);
+        Vector3 victimSpotLevelled = new Vector3(victim.position.x, this.transform.position.y, victim.position.z);
         transform.LookAt(victimSpotLevelled);
 
         // Spawn a floating weapon, and face it the right way

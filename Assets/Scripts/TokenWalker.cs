@@ -16,6 +16,7 @@ public class TokenWalker : MonoBehaviour {
 	}
 
     // Hop from one space to another space (probably right next to it)
+    // start the hopping at the first one. will continue until hopsQueue is empty
     private void NextHop() {
         // Pop first hop off the queue
         if (hopsQueue.First != null) {

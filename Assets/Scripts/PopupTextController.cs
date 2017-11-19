@@ -7,7 +7,8 @@ public class PopupTextController : MonoBehaviour {
 
     public static void Initialize() {
         popupText = Resources.Load<PopupText>("PopupTextParent");
-        canvas = GameObject.Find("InGameCanvas");
+//        canvas = GameObject.Find("InGameCanvas");
+        canvas = GameManager.instance.InGameCanvas;
     }
 
     public static void PopupText(string text, Transform attachTo) {

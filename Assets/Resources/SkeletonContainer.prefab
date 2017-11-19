@@ -262,7 +262,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &65688554915074766
 BoxCollider:
@@ -322,14 +322,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f781d4d3b5639c4c90edc0d54bf5a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
   characterName: Skeleton
   HP: 8
   AC: 12
   InitativeMod: 4
   Speed: 6
   AttackName: Spear
+  AttackRange: 2
   AttackMod: 2
   DamageDiceNum: 1
   DamageDiceMagnitude: 8
@@ -345,8 +344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c434f368e7fede4482ac83d24716611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
 --- !u!122 &122672664807919596
 Halo:
   m_ObjectHideFlags: 1
@@ -356,5 +353,5 @@ Halo:
   m_Enabled: 0
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 2030043135
   m_Size: 0.75

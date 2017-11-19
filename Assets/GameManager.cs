@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class GameManager : MonoBehaviour {
     // Public GameObjects to be assigned in editor
     public GameObject OneByOnePrefab;
+
     public Camera Camera;
     public List<GameObject> MonsterPrefabsList;
     public List<GameObject> PlayerPrefabList;
 
-    public GameObject MenuCanvas, InGameCanvas;
+    public GameObject MenuCanvas, InGameCanvas, PlayersWinMessage, MonstersWinMessage;
     public TMP_Text TextCurrentActor, TextHP, TextAC, TextAtkName, TextAtkRoll, TextDmgRoll, TextSpeedLeft, TextTurnTracker;
 
     [HideInInspector] public static GameManager instance;
@@ -21,19 +24,27 @@ public class GameManager : MonoBehaviour {
     public Turn currentTurnStats;
     private int playerCount, monsterCount;
     [HideInInspector] public static STATES state = STATES.MENU;
-    public enum STATES { MENU, AWAITING_INPUT, ANIMATING_ACTION };
+
+    public enum STATES {
+        MENU,
+        AWAITING_INPUT,
+        ANIMATING_ACTION
+    };
 
     // Predefined Scenarios
     private SceneActor[] skeletonScene;
+
     private SceneActor[] OTHERScene; // TODO: Make this one, too!
 
     // The game board, available for inspection
     // each Space object contains a reference to a OneByOne (GameObject). Use this to find actual world unit coordinates of each game space
     [HideInInspector] public Space[,] spaces;
+
     public GameObject SpacesHolder; // an empty GameObject to hold all the spaces. Simply to reduce clutter...doesn't improve performance, I think
 
     // Properties of the spaces
     public int RowsX = 60, ColsZ = 60;
+
     private const float DropFromHeight = 10f;
     private const float Margin = 0.05f;
     private const float SpaceHeight = 0.2f;
@@ -42,7 +53,7 @@ public class GameManager : MonoBehaviour {
     private const float cameraSpeed = 4;
 
 
-    void Start () {
+    void Start() {
         GameManager.instance = this;
         SPACE_HEIGHT_MOD = new Vector3(0f, SpaceHeight, 0f);
         PopupTextController.Initialize();
@@ -56,53 +67,8 @@ public class GameManager : MonoBehaviour {
         // Generate game board made of one-by-one squares
         spaces = new Space[RowsX, ColsZ];
         GenerateSquares();
-        ResetBoard();
-
-        // DEBUG
-        Invoke("StartScenarioSkeletons", 2);
+//        ResetBoard();
     }
-
-    public void NextTurn() {
-        // Turn of highlight for previous token
-        if (currentActorTurn >= 0) { // skip for first turn
-            ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
-        }
-
-        // Update counter for new turn
-        currentActorTurn = (currentActorTurn + 1) % actors.Count;
-
-        // Set text for this actor
-        TextCurrentActor.text = actors[currentActorTurn].ActorName;
-        TextHP.text = "HP: " + actors[currentActorTurn].HP;
-        TextAC.text = "AC: " + actors[currentActorTurn].AC;
-        TextAtkName.text = actors[currentActorTurn].AttackName;
-        TextAtkRoll.text = "1d20 + " + actors[currentActorTurn].AttackMod;
-        TextDmgRoll.text = actors[currentActorTurn].DamageDieNum + "d" + actors[currentActorTurn].DamageDieMagnitude + " + " + actors[currentActorTurn].DamageMod;
-        TextSpeedLeft.text = actors[currentActorTurn].Speed + " Spaces";
-
-        // Track this turn
-        currentTurnStats = new Turn {MovementLeft = actors[currentActorTurn].Speed};
-
-        // Change visuals for this actor's turn
-        MouseHoverHighlight.MouseOverColor = actors[currentActorTurn].ActorColor;
-
-        // Set state
-        SetState(STATES.AWAITING_INPUT);
-    }
-
-    public void CheckForTurnCompleted() {
-        if (currentTurnStats.MovementLeft == 0 && currentTurnStats.HasAttackHappened) {
-            // Current turn actor is out of movement and has already attacked
-            NextTurn();
-        }
-    }
-
-    // Contains the information for a current turn. Temporary: will be deleted after one turn is done
-    public class Turn {
-        public int MovementLeft;
-        public bool HasAttackHappened = false;
-    }
-
     public void SetState(STATES newSate) {
         state = newSate;
         if (newSate == STATES.AWAITING_INPUT) {
@@ -114,7 +80,8 @@ public class GameManager : MonoBehaviour {
         } else if (newSate == STATES.MENU) {
             MouseHoverHighlight.isEffectActive = false;
             ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
-            ResetBoard(); // put the squares back in their reset position
+            InGameCanvas.SetActive(false);
+            MenuCanvas.SetActive(true);
         }
     }
 
@@ -128,29 +95,25 @@ public class GameManager : MonoBehaviour {
         return diceTotal;
     }
 
-    public void OnClickStartButton() {
-        StartScenarioSkeletons();
-    }
-
-    public void StartScenarioSkeletons() {
+    public void OnClickStartSkeletonsButton() {
         // Reset the scene and place the new scene's tokens
-        ResetAndBuildScene(skeletonScene);
-
-        // Roll init and sort
-        RollInit();
-
-        NextTurn();
+        ResetBuildAndStartScene(skeletonScene);
     }
 
-    private void ResetAndBuildScene(SceneActor[] predefinedSceneActors) {
+    public void OnClickStartOTHERButton() {
+
+    }
+
+    private void ResetBuildAndStartScene(SceneActor[] predefinedSceneActors) {
         // Reset the scene to blank
-        ReleaseBoard();
+        ResetBoard(); // put the squares back in their reset position
+        ReleaseBoard(); // Drop the squares
         actors = new List<Actor>();
         playerCount = 0;
         monsterCount = 0;
         currentActorTurn = -1; // -1 so turns actually start a 0
 
-        // Build scene from predefined
+        // Build scene objects from predefined
         foreach (SceneActor actorData in predefinedSceneActors) {
             // Create GameObject and place it in the correct square
             GameObject newGameObject;
@@ -166,24 +129,22 @@ public class GameManager : MonoBehaviour {
             newGameObject.transform.position = new Vector3(squareBasis.x, DropFromHeight + 1, squareBasis.z);
 
             TokenStats stats = newGameObject.GetComponent<TokenStats>();
-            Actor newActor = new Actor(newGameObject, actorData.x, actorData.z, actorData.ActorColor, actorData.IsPlayer, stats.characterName, stats.HP, stats.AC, stats.InitativeMod, stats.Speed, stats.AttackName, stats.AttackMod, stats.DamageDiceNum,
+            Actor newActor = new Actor(newGameObject, actorData.x, actorData.z, actorData.ActorColor, actorData.IsPlayer, stats.characterName, stats.HP, stats.AC,
+                stats.InitativeMod, stats.Speed, stats.AttackName, stats.AttackRange, stats.AttackMod, stats.DamageDiceNum,
                 stats.DamageDiceMagnitude, stats.DamageMod);
             spaces[actorData.x, actorData.z].isBlocked = true;
 
             actors.Add(newActor);
         }
-    }
 
-    private void RollInit() {
-        foreach (Actor actor in actors) {
-            actor.RollInit();
-        }
-        actors.Sort((a, b) => b.Initative.CompareTo(a.Initative));
-        string turnTrackerList = "";
-        foreach (Actor actor in actors) {
-            turnTrackerList += actor.Initative + " - " + actor.ActorName + "\n";
-        }
-        TextTurnTracker.text = turnTrackerList;
+        // Show UI
+        InGameCanvas.SetActive(true);
+
+        // Roll init and sort
+        RollInit();
+
+        // Start the action!
+        NextTurn();
     }
 
     // Instantiate square objects, but don't make them active yet
@@ -191,7 +152,7 @@ public class GameManager : MonoBehaviour {
         // Set up X,Z containers
         for (int x = 0; x < RowsX; x++) {
             for (int z = 0; z < ColsZ; z++) {
-                spaces[x, z] = new Space(x, z);
+                spaces[x, z] = new Space(x, z, false);
             }
         }
 
@@ -227,6 +188,17 @@ public class GameManager : MonoBehaviour {
 
     // Place squares back in the original position for a new game scenario
     private void ResetBoard() {
+        // Hide menu
+        MenuCanvas.SetActive(false);
+
+        // Remove any actors that are still on the board
+        if (actors != null) {
+            foreach (Actor actor in actors) {
+                Destroy(actor.tokenRef);
+                spaces[actor.x, actor.z].isBlocked = false;
+            }
+        }
+
         for (int x = 0; x < RowsX; x++) {
             for (int z = 0; z < ColsZ; z++) {
                 if (!spaces[x, z].isBlocked) {
@@ -236,6 +208,7 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
+
     // Re-activate all squares so they fall
     private void ReleaseBoard() {
         for (int x = 0; x < RowsX; x++) {
@@ -247,25 +220,175 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void RollInit() {
+        foreach (Actor actor in actors) {
+            actor.RollInit();
+        }
+        actors.Sort((a, b) => b.Initative.CompareTo(a.Initative));
+        string turnTrackerList = "";
+        foreach (Actor actor in actors) {
+            turnTrackerList += actor.Initative + " - " + actor.ActorName + "\n";
+        }
+        TextTurnTracker.text = turnTrackerList;
+    }
+
+    public void NextTurn() {
+        // Turn of highlight for previous token
+        if (currentActorTurn >= 0) { // skip for first turn
+            ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
+        }
+
+        // Update counter for new turn (skipping killed actors)
+        int infinteLoopGuard = actors.Count + 1; // paranoid that Unity will crash on me again....
+        do {
+            currentActorTurn = (currentActorTurn + 1) % actors.Count;
+            infinteLoopGuard--;
+        } while (!actors[currentActorTurn].IsAlive || infinteLoopGuard < 0);
+        if (infinteLoopGuard < 0) {
+            Debug.Log("INFINTE LOOP!");
+        }
+
+        // Set text for this actor
+        TextCurrentActor.text = actors[currentActorTurn].ActorName;
+        TextHP.text = "HP: " + actors[currentActorTurn].HP;
+        TextAC.text = "AC: " + actors[currentActorTurn].AC;
+        TextAtkName.text = actors[currentActorTurn].AttackName;
+        TextAtkRoll.text = "1d20 + " + actors[currentActorTurn].AttackMod;
+        TextDmgRoll.text = actors[currentActorTurn].DamageDieNum + "d" + actors[currentActorTurn].DamageDieMagnitude + " + " + actors[currentActorTurn].DamageMod;
+        TextSpeedLeft.text = actors[currentActorTurn].Speed + " Spaces";
+
+        // Track what's been happening this turn
+        currentTurnStats = new Turn {MovementLeft = actors[currentActorTurn].Speed};
+
+        // Change visuals for this actor's turn
+        MouseHoverHighlight.MouseOverColor = actors[currentActorTurn].ActorColor;
+
+        // Set state
+        SetState(STATES.AWAITING_INPUT);
+    }
+
+    public void CheckForTurnCompleted() {
+        if (currentTurnStats.MovementLeft == 0 && currentTurnStats.HasAttackHappened) {
+            // Current turn actor is out of movement and has already attacked
+            NextTurn();
+        }
+    }
+
+    // Contains the information for a current turn. Temporary: will be deleted after one turn is done
+    public class Turn {
+        public int MovementLeft;
+        public bool HasAttackHappened = false;
+    }
+
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
-    public void MessageClickedToken(GameObject goClicked) {
-        Debug.Log("Attacking! " + goClicked);
-        // Check if attack is possible
+    public void MessageClickedToken(GameObject attackee) {
+        SetState(STATES.ANIMATING_ACTION);
+        if (currentTurnStats.HasAttackHappened) {
+            PopupTextController.PopupText("Already attacked", attackee.transform);
+        } else {
+            GameObject attacker = actors[currentActorTurn].tokenRef;
+            if (attackee == attacker) {
+                PopupTextController.PopupText("Can't attack self", attackee.transform);
+            } else {
+                Actor victim = actors.Find(actor => { return actor.tokenRef == attackee; });
+                if (victim == null) {
+                    PopupTextController.PopupText("ERROR FINDING ACTOR", attackee.transform);
+                } else {
+                    if (!victim.IsAlive) {
+                        PopupTextController.PopupText("Creature is already dead", attackee.transform);
+                    } else {
+                        // Check if attack is possible, using A* pathfinding to find range in num squares, manhattan distance
+                        if (Pathfind.FindDistance((int) attacker.transform.position.x, (int) attacker.transform.position.z, (int) attackee.transform.position.x,
+                                (int) attackee.transform.position.z) > actors[currentActorTurn].AttackRange) {
+                            PopupTextController.PopupText("Out of range", attackee.transform);
+                        } else {
+                            // Roll to hit
+                            int attackResult = RollDice(1, 20, actors[currentActorTurn].AttackMod);
+                            if (attackResult >= victim.AC) {
+                                PopupTextController.PopupText("Hit: " + attackResult + " vs. " + victim.AC, attacker.transform);
 
-        // Do attack mechanics
+                                // Animate attack
+                                attacker.GetComponent<TokenAttacker>().AttackTowards(attackee.transform);
 
-        // Animate attack
-        actors[currentActorTurn].tokenRef.GetComponent<TokenAttacker>().AttackTowards(goClicked);
+                                int damageResult = RollDice(actors[currentActorTurn].DamageDieNum, actors[currentActorTurn].DamageDieMagnitude, actors[currentActorTurn].DamageMod);
+                                victim.HP -= damageResult;
 
-        // Finalise attack
-        currentTurnStats.HasAttackHappened = true;
+                                delayedMessage = damageResult + " damage";
+                                delayedActor = victim;
+                                Invoke("DelayDamagePopup", 0.5f);
+                                return;
+                            } else {
+                                PopupTextController.PopupText("Miss: " + attackResult + " vs. " + victim.AC, attackee.transform);
+                            }
+
+                            // Finalise attack
+                            currentTurnStats.HasAttackHappened = true;
+                        }
+                    }
+                }
+            }
+        }
+        SetState(STATES.AWAITING_INPUT);
         CheckForTurnCompleted();
+    }
+    private Actor delayedActor;
+    private string delayedMessage;
+    private void DelayDamagePopup() {
+        PopupTextController.PopupText(delayedMessage, delayedActor.tokenRef.transform);
+        CheckForDeath(delayedActor);
+        SetState(STATES.AWAITING_INPUT);
+        CheckForTurnCompleted();
+    }
+
+    public void CheckForDeath(Actor actor) {
+        if (actor.HP <= 0) {
+            actor.IsAlive = false; // Note: still blocking its space, which is fine!
+            KillAnimation(actor.tokenRef);
+            if (actor.IsPlyaer) {
+                playerCount--;
+            } else {
+                monsterCount--;
+            }
+            Invoke("CheckForGameOver", 1.1f);
+        }
+    }
+
+    private void KillAnimation(GameObject actorTokenRef) {
+        actorTokenRef.transform.position += new Vector3(0.3f, 0.5f, 0);
+        toResetFreeze = actorTokenRef.GetComponent<Rigidbody>();
+
+        // allow only Z rotation
+        toResetFreeze.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX |
+                                    RigidbodyConstraints.FreezeRotationY;
+
+        // Tap! Fall down
+        toResetFreeze.AddTorque(new Vector3(0, 0, 1.5f)); // rotate along Z axis;
+
+        // Lock back in place after it has a chance to fall down
+        Invoke("ReFreeze", 1f);
+    }
+    private Rigidbody toResetFreeze;
+    private void ReFreeze() {
+        toResetFreeze.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+    }
+
+    private void CheckForGameOver() {
+        if (playerCount < 1) {
+            MonstersWinMessage.SetActive(true);
+            PlayersWinMessage.SetActive(false);
+            SetState(STATES.MENU);
+        } else if (monsterCount < 1) {
+            MonstersWinMessage.SetActive(false);
+            PlayersWinMessage.SetActive(true);
+            SetState(STATES.MENU);
+        }
     }
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedSpace(Vector2 coord) {
         WalkActor(actors[currentActorTurn], (int) coord.x, (int) coord.y);
     }
+
     // Walk a player or monster token to a space
     private void WalkActor(Actor actor, int xTo, int zTo) {
         // Find a path to the desired square, by getting a queue of sqaures to hop over
@@ -281,20 +404,19 @@ public class GameManager : MonoBehaviour {
                 actor.z = zTo;
                 spaces[xTo, zTo].isBlocked = true;
 
-                // start the hopping at the first one. will continue until hopsQueue is empty
                 SetState(STATES.ANIMATING_ACTION);
-//                NextHopToken(actor.tokenRef);
+
+                // Use the script attached to the token to walk the path
                 actor.tokenRef.GetComponent<TokenWalker>().WalkPath(hopsQueue);
             }
         } else {
-                PopupTextController.PopupText("Pathfinding failed", spaces[xTo, zTo].gameSpace.transform);
+            PopupTextController.PopupText("Pathfinding failed", spaces[xTo, zTo].gameSpace.transform);
         }
     }
 
-    void Update () {
-        float deltaX = 0f, deltaZ = 0f;
-
+    void Update() {
         // Move the camera along the diagonals
+        float deltaX = 0f, deltaZ = 0f;
         if (Input.GetKey(KeyCode.A)) {
             deltaX += cameraSpeed * Time.deltaTime;
             deltaZ -= cameraSpeed * Time.deltaTime;
@@ -312,16 +434,18 @@ public class GameManager : MonoBehaviour {
         if (deltaX != 0f || deltaZ != 0f) {
             Camera.transform.position = new Vector3(Camera.transform.position.x + deltaX, Camera.transform.position.y, Camera.transform.position.z + deltaZ);
         }
-	}
+    }
 
     // A struct to hold information about the game board spaces
     public class Space {
         public GameObject gameSpace = null; // public reference to the OneByOne GameObject pointed to by this space
         public int x, z; // public reference to this object's position in the grid
-        public bool isBlocked = false; // Define if this space is impassible
-        public Space(int x, int z) {
+        public bool isBlocked; // Define if this space is impassible
+
+        public Space(int x, int z, bool isBlocked) {
             this.x = x;
             this.z = z;
+            this.isBlocked = isBlocked;
         }
     }
 
@@ -332,6 +456,7 @@ public class GameManager : MonoBehaviour {
         public int PrefabIndex; // which item in the list of players/monsters does this Actor refer to?
         public int x, z; // location on the grid to start the token
         public Color ActorColor;
+
         public SceneActor(bool isPlayer, int prefabIndex, int x, int z, Color actorColor) {
             IsPlayer = isPlayer;
             PrefabIndex = prefabIndex;
@@ -348,13 +473,15 @@ public class GameManager : MonoBehaviour {
         public int x, z;
         public bool IsPlyaer;
         public bool IsAlive = true;
-        public string ActorName;
+        public readonly string ActorName;
         public int HP, AC, InitativeMod, Speed;
         public int Initative;
         public string AttackName;
-        public int AttackMod, DamageDieNum, DamageDieMagnitude, DamageMod;
+        public int AttackRange, AttackMod, DamageDieNum, DamageDieMagnitude, DamageMod;
         public Color ActorColor; // the colour to surround this token with indicating it is the active Actor, and to use as the cursor highlight
-        public Actor(GameObject tokenRef, int x, int z, Color actorColor, bool isPlyaer, string actorName, int hp, int ac, int initativeMod, int speed, string attackName, int attackMod, int damageDieNum, int damageDieMagnitude, int damageMod) {
+
+        public Actor(GameObject tokenRef, int x, int z, Color actorColor, bool isPlyaer, string actorName, int hp, int ac, int initativeMod, int speed, string attackName,
+            int attackRange, int attackMod, int damageDieNum, int damageDieMagnitude, int damageMod) {
             this.tokenRef = tokenRef;
             this.x = x;
             this.z = z;
@@ -366,6 +493,7 @@ public class GameManager : MonoBehaviour {
             InitativeMod = initativeMod;
             Speed = speed;
             AttackName = attackName;
+            AttackRange = attackRange;
             AttackMod = attackMod;
             DamageDieNum = damageDieNum;
             DamageDieMagnitude = damageDieMagnitude;

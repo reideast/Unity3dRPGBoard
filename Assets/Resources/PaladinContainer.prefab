@@ -55,9 +55,10 @@ GameObject:
   - component: {fileID: 54165666656781742}
   - component: {fileID: 114084422183067096}
   - component: {fileID: 114912141026326432}
-  - component: {fileID: 114512727134296168}
   - component: {fileID: 122785132226701106}
   - component: {fileID: 114241353145780100}
+  - component: {fileID: 114399256130892954}
+  - component: {fileID: 114297934989561134}
   m_Layer: 0
   m_Name: PaladinContainer
   m_TagString: Untagged
@@ -160,7 +161,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!65 &65516469254351600
 BoxCollider:
@@ -185,14 +186,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f781d4d3b5639c4c90edc0d54bf5a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  x: 0
-  z: 0
   characterName: Ser Baric Nylef
   HP: 23
-  AC: 18
+  AC: 16
   InitativeMod: 1
   Speed: 6
   AttackName: Maul
+  AttackRange: 1
   AttackMod: 5
   DamageDiceNum: 2
   DamageDiceMagnitude: 8
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2deb82f8a99c16b408e512028c2a31de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114512727134296168
+--- !u!114 &114297934989561134
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -217,6 +217,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5974425f6f5a5914fba20ae2ea581d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114399256130892954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831287604591858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c434f368e7fede4482ac83d24716611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114912141026326432
@@ -241,5 +252,5 @@ Halo:
   m_Enabled: 0
   m_Color:
     serializedVersion: 2
-    rgba: 2533324800
+    rgba: 2030043135
   m_Size: 0.75

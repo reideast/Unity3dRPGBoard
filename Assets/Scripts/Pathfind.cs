@@ -1,6 +1,19 @@
 ﻿using System.Collections.Generic;
 
 public class Pathfind { // Does not use Unity at all, so don't extend MonoBehaviour
+
+    private static bool careIfPathIsBlocked = true;
+    public static int FindDistance(int xFrom, int zFrom, int xTo, int zTo) {
+        careIfPathIsBlocked = false; // Distance doesn't care if the path is path is blocked!
+        LinkedList<TokenWalker.Hop> path = FindPath(xFrom, zFrom, xTo, zTo);
+        careIfPathIsBlocked = true;
+        if (path == null) {
+            return -1;
+        } else {
+            return path.Count;
+        }
+    }
+
     /**
      * Find a path using A*, and return it as a "stack" (i.e. LinkedList, but please pop off the Front)
      * NOTE: This uses my code that I submitted for assignment 10 from CT255 that I completed in Spring of 2016.
@@ -21,7 +34,7 @@ public class Pathfind { // Does not use Unity at all, so don't extend MonoBehavi
         for (int row = 0; row < GameManager.instance.RowsX; ++row) {
             for (int col = 0; col < GameManager.instance.ColsZ; ++col) {
                 nodes[col, row] = new Node { x = col, z = row };
-                if (GameManager.instance.spaces[col, row].isBlocked) {
+                if (careIfPathIsBlocked && GameManager.instance.spaces[col, row].isBlocked) {
                     nodes[col, row].isClosed = true;
                 }
             }
