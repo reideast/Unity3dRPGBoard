@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         GameManager.instance = this;
         SPACE_HEIGHT_MOD = new Vector3(0f, SpaceHeight, 0f);
+        PopupTextController.Initialize();
 
         // Build the predefined scenarios
         skeletonScene = new SceneActor[] {
@@ -88,7 +89,6 @@ public class GameManager : MonoBehaviour {
 
         // Change visuals for this actor's turn
         MouseHoverHighlight.MouseOverColor = actors[currentActorTurn].ActorColor;
-        ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = true;
 
         // Set state
         SetState(STATES.AWAITING_INPUT);
@@ -111,8 +111,10 @@ public class GameManager : MonoBehaviour {
         state = newSate;
         if (newSate == STATES.AWAITING_INPUT) {
             MouseHoverHighlight.isEffectActive = true;
+            ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = true;
         } else if (newSate == STATES.ANIMATING_ACTION) {
             MouseHoverHighlight.isEffectActive = false;
+            ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
         } else if (newSate == STATES.MENU) {
             MouseHoverHighlight.isEffectActive = false;
             ResetBoard(); // put the squares back in their reset position
@@ -143,9 +145,6 @@ public class GameManager : MonoBehaviour {
         // TODO: remove these
         player = actors[0].tokenRef;
         monster = actors[1].tokenRef;
-
-        // TODO: DEBUG: only turn on when it's the player's turn
-        MouseHoverHighlight.isEffectActive = true;
 
         NextTurn();
     }
@@ -241,37 +240,45 @@ public class GameManager : MonoBehaviour {
     }
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
-    //public void MessageClickedToken(TokenStats ts) {
     public void MessageClickedToken(GameObject goClicked) {
-        //WalkToken(player, ts.x, ts.z);
-        Debug.Log("trying to attack this GO:");
-        Debug.Log(goClicked);
-        player.GetComponent<TokenAttacker>().AttackTowards(goClicked);
+        // Check if attack is possible
+
+        // Do attack mechanics
+
+        // Animate attack
+        actors[currentActorTurn].tokenRef.GetComponent<TokenAttacker>().AttackTowards(goClicked);
+
+        // Finalise attack
+        currentTurnStats.HasAttackHappened = true;
+        CheckForTurnCompleted();
     }
 
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedSpace(Vector2 coord) {
-        WalkToken(player, (int) coord.x, (int) coord.y); // TODO: player is for DEBUG
+        WalkToken(actors[currentActorTurn].tokenRef, (int) coord.x, (int) coord.y);
     }
-    // Walk a player or monster token to another token
+    // Walk a player or monster token to a space
     private void WalkToken(GameObject token, int xTo, int zTo) {
         // Find a path to the desired square, by getting a queue of sqaures to hop over
         Pathfind tokenPositionScript = token.GetComponent<Pathfind>();
         hopsQueue = tokenPositionScript.findPath(tokenPositionScript.x, tokenPositionScript.z, xTo, zTo);
 
         if (hopsQueue != null) {
-            // change the token's stored properties to its final position
-            spaces[tokenPositionScript.x, tokenPositionScript.z].isBlocked = false;
-            tokenPositionScript.x = xTo;
-            tokenPositionScript.z = zTo;
-            spaces[xTo, zTo].isBlocked = true;
+            if (hopsQueue.Count > currentTurnStats.MovementLeft) {
+                PopupTextController.PopupText("Not Enough Movement", spaces[xTo, zTo].gameSpace.transform);
+            } else {
+                SetState(STATES.ANIMATING_ACTION);
+                // change the token's stored properties to its final position
+                spaces[tokenPositionScript.x, tokenPositionScript.z].isBlocked = false;
+                tokenPositionScript.x = xTo;
+                tokenPositionScript.z = zTo;
+                spaces[xTo, zTo].isBlocked = true;
 
-            Debug.Log("Hops left=" + hopsQueue.Count);
+                Debug.Log("Hops left=" + hopsQueue.Count);
 
-            // start the hopping at the first one. will continue until hopsQueue is empty
-            MouseHoverHighlight.isEffectActive = false;
-            ((Behaviour) token.GetComponent("Halo")).enabled = false;
-            NextHopToken(token);
+                // start the hopping at the first one. will continue until hopsQueue is empty
+                NextHopToken(token);
+            }
         } else {
             Debug.Log("No path to walk. Pathfinding failed");
         }
@@ -288,6 +295,10 @@ public class GameManager : MonoBehaviour {
             // Get next hop out of queue
             Hop nextHop = hopsQueue.First.Value;
             hopsQueue.RemoveFirst(); // pop
+            // Update UI to match one space moved
+            currentTurnStats.MovementLeft -= 1;
+            TextSpeedLeft.text = currentTurnStats.MovementLeft + " Spaces";
+
             // Set up global variables for next hop. (Requried to be global to use InvokeRepeating to loop through the animation.)
             startPos = spaces[nextHop.xFrom, nextHop.zFrom].gameSpace.transform.position + SPACE_HEIGHT_MOD * 2;
             endPos = spaces[nextHop.xTo, nextHop.zTo].gameSpace.transform.position + SPACE_HEIGHT_MOD * 2;
@@ -299,19 +310,17 @@ public class GameManager : MonoBehaviour {
             startTime = Time.time;
             endTime = startTime + HOP_ANIMATION_TIME;
             Debug.Log("Hopping from (" + nextHop.xFrom + "," + nextHop.zFrom + ") to (" + nextHop.xTo + "," + nextHop.zTo + "). Hops still in queue =" + hopsQueue.Count);
-            InvokeRepeating("HopLoop", 0f, 0.01f);
+            InvokeRepeating("SingleHopAnimationLoop", 0f, 0.01f);
         } else {
-            // TODO: DONE WITH HOPPING!
-            Debug.Log("DEBUG: Done with hopping!");
-            MouseHoverHighlight.isEffectActive = true;
-            ((Behaviour) token.GetComponent("Halo")).enabled = true;
+            SetState(STATES.AWAITING_INPUT);
+            CheckForTurnCompleted();
         }
     }
     private GameObject tokenToAnimate;
     private Vector3 startPos, endPos, relativeStartPos, relativeEndPos, center;
     private float startTime, endTime;
 
-    private void HopLoop() {
+    private void SingleHopAnimationLoop() {
         if (Time.time < endTime) {
             // Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3.Slerp.html
             //     and this post: https://answers.unity.com/questions/11184/moving-player-in-an-arc-from-startpoint-to-endpoin.html
@@ -323,7 +332,7 @@ public class GameManager : MonoBehaviour {
             //tokenToAnimate.transform.position = tokenToAnimate.transform.position + (new Vector3(0, 2f, 0));
             //Debug.Log("after add (0,2,0): " + tokenToAnimate.transform.position);
             //HopToken
-            CancelInvoke("HopLoop");
+            CancelInvoke("SingleHopAnimationLoop");
             NextHopToken(tokenToAnimate);
         }
     }
