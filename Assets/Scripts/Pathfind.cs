@@ -6,7 +6,7 @@ public class Pathfind { // Does not use Unity at all, so don't extend MonoBehavi
      * NOTE: This uses my code that I submitted for assignment 10 from CT255 that I completed in Spring of 2016.
      *          It is largely unchanged, except converting from Java -> C#
      */
-    public static LinkedList<GameManager.Hop> findPath(int xFrom, int zFrom, int xTo, int zTo) {
+    public static LinkedList<TokenWalker.Hop> FindPath(int xFrom, int zFrom, int xTo, int zTo) {
         // **** do not pathfind to own square ****
         if (xTo == xFrom && zTo == zFrom) {
             return null;
@@ -20,9 +20,7 @@ public class Pathfind { // Does not use Unity at all, so don't extend MonoBehavi
         // create node objects and set walls to closed
         for (int row = 0; row < GameManager.instance.RowsX; ++row) {
             for (int col = 0; col < GameManager.instance.ColsZ; ++col) {
-                nodes[col, row] = new Node();
-                nodes[col, row].x = col;
-                nodes[col, row].z = row;
+                nodes[col, row] = new Node { x = col, z = row };
                 if (GameManager.instance.spaces[col, row].isBlocked) {
                     nodes[col, row].isClosed = true;
                 }
@@ -98,7 +96,7 @@ public class Pathfind { // Does not use Unity at all, so don't extend MonoBehavi
 
         // **** if a path was found, save that path externally ****
         if (isMazeSolvable) {
-            LinkedList<GameManager.Hop> pathStack = new LinkedList<GameManager.Hop>();
+            LinkedList<TokenWalker.Hop> pathStack = new LinkedList<TokenWalker.Hop>();
             //path = new Stack<>();
             curr = nodes[xTo, zTo];
             // Skip the first square in the path (the destination). Start the loop at the square just before the end. (For Unity, I want "hops", but the original Java was designed to return the whole path.)
@@ -110,7 +108,7 @@ public class Pathfind { // Does not use Unity at all, so don't extend MonoBehavi
             // first item on stack should be xTo,zTo
             int prevX = xTo, prevZ = zTo;
             while (curr != null) {
-                pathStack.AddFirst(new GameManager.Hop(curr.x, curr.z, prevX, prevZ));
+                pathStack.AddFirst(new TokenWalker.Hop(curr.x, curr.z, prevX, prevZ));
                 prevX = curr.x;
                 prevZ = curr.z;
 

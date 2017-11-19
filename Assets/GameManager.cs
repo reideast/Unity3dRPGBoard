@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     // Data structures to support running the game
     private List<Actor> actors;
     private int currentActorTurn;
-    private Turn currentTurnStats;
+    public Turn currentTurnStats;
     private int playerCount, monsterCount;
     [HideInInspector] public static STATES state = STATES.MENU;
     public enum STATES { MENU, AWAITING_INPUT, ANIMATING_ACTION };
@@ -37,10 +37,9 @@ public class GameManager : MonoBehaviour {
     private const float DropFromHeight = 10f;
     private const float Margin = 0.05f;
     private const float SpaceHeight = 0.2f;
-    private Vector3 SPACE_HEIGHT_MOD;
+    public Vector3 SPACE_HEIGHT_MOD;
 
     private const float cameraSpeed = 4;
-    private const float HOP_ANIMATION_TIME = 0.5f;
 
 
     void Start () {
@@ -91,7 +90,7 @@ public class GameManager : MonoBehaviour {
         SetState(STATES.AWAITING_INPUT);
     }
 
-    private void CheckForTurnCompleted() {
+    public void CheckForTurnCompleted() {
         if (currentTurnStats.MovementLeft == 0 && currentTurnStats.HasAttackHappened) {
             // Current turn actor is out of movement and has already attacked
             NextTurn();
@@ -270,7 +269,7 @@ public class GameManager : MonoBehaviour {
     // Walk a player or monster token to a space
     private void WalkActor(Actor actor, int xTo, int zTo) {
         // Find a path to the desired square, by getting a queue of sqaures to hop over
-        hopsQueue = Pathfind.findPath(actor.x, actor.z, xTo, zTo);
+        LinkedList<TokenWalker.Hop> hopsQueue = Pathfind.FindPath(actor.x, actor.z, xTo, zTo);
 
         if (hopsQueue != null) {
             if (hopsQueue.Count > currentTurnStats.MovementLeft) {
@@ -284,62 +283,11 @@ public class GameManager : MonoBehaviour {
 
                 // start the hopping at the first one. will continue until hopsQueue is empty
                 SetState(STATES.ANIMATING_ACTION);
-                NextHopToken(actor.tokenRef);
+//                NextHopToken(actor.tokenRef);
+                actor.tokenRef.GetComponent<TokenWalker>().WalkPath(hopsQueue);
             }
         } else {
                 PopupTextController.PopupText("Pathfinding failed", spaces[xTo, zTo].gameSpace.transform);
-        }
-    }
-    public class Hop {
-        public int xFrom, zFrom, xTo, zTo;
-        public Hop(int xFrom, int zFrom, int xTo, int zTo) { this.xFrom = xFrom; this.zFrom = zFrom; this.xTo = xTo; this.zTo = zTo; }
-    }
-    private LinkedList<Hop> hopsQueue;
-    // Hop from one space to another space (probably right next to it)
-    private void NextHopToken(GameObject token) {
-        // Pop first hop off the queue
-        if (hopsQueue.First != null) {
-            // Get next hop out of queue
-            Hop nextHop = hopsQueue.First.Value;
-            hopsQueue.RemoveFirst(); // pop
-            // Update UI to match one space moved
-            currentTurnStats.MovementLeft -= 1;
-            TextSpeedLeft.text = currentTurnStats.MovementLeft + " Spaces";
-
-            // Set up global variables for next hop. (Requried to be global to use InvokeRepeating to loop through the animation.)
-            startPos = spaces[nextHop.xFrom, nextHop.zFrom].gameSpace.transform.position + SPACE_HEIGHT_MOD * 2;
-            endPos = spaces[nextHop.xTo, nextHop.zTo].gameSpace.transform.position + SPACE_HEIGHT_MOD * 2;
-            center = (startPos + endPos) * 0.5f;
-            center -= new Vector3(0, 0.1f, 0); // make circular movment a bit flatter (also, this line is necessary to have the arc be along the Y plane)
-            relativeStartPos = startPos - center;
-            relativeEndPos = endPos - center;
-            tokenToAnimate = token;
-            startTime = Time.time;
-            endTime = startTime + HOP_ANIMATION_TIME;
-            InvokeRepeating("SingleHopAnimationLoop", 0f, 0.01f);
-        } else {
-            SetState(STATES.AWAITING_INPUT);
-            CheckForTurnCompleted();
-        }
-    }
-    private GameObject tokenToAnimate;
-    private Vector3 startPos, endPos, relativeStartPos, relativeEndPos, center;
-    private float startTime, endTime;
-
-    private void SingleHopAnimationLoop() {
-        if (Time.time < endTime) {
-            // Using Slerp to make an arc of movement is from unity manual: https://docs.unity3d.com/ScriptReference/Vector3.Slerp.html
-            //     and this post: https://answers.unity.com/questions/11184/moving-player-in-an-arc-from-startpoint-to-endpoin.html
-            tokenToAnimate.transform.position = Vector3.Slerp(relativeStartPos, relativeEndPos, (Time.time - startTime) / (endTime - startTime));
-            tokenToAnimate.transform.position += center;
-        } else {
-            //tokenToAnimate.transform.position = endPos;
-            //Debug.Log("At endPos: " + tokenToAnimate.transform.position);
-            //tokenToAnimate.transform.position = tokenToAnimate.transform.position + (new Vector3(0, 2f, 0));
-            //Debug.Log("after add (0,2,0): " + tokenToAnimate.transform.position);
-            //HopToken
-            CancelInvoke("SingleHopAnimationLoop");
-            NextHopToken(tokenToAnimate);
         }
     }
 

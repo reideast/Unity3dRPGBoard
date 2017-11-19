@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 114912141026326432}
   - component: {fileID: 114512727134296168}
   - component: {fileID: 122785132226701106}
+  - component: {fileID: 114241353145780100}
   m_Layer: 0
   m_Name: PaladinContainer
   m_TagString: Untagged
@@ -196,6 +197,17 @@ MonoBehaviour:
   DamageDiceNum: 2
   DamageDiceMagnitude: 8
   DamageMod: 3
+--- !u!114 &114241353145780100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1831287604591858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2deb82f8a99c16b408e512028c2a31de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114512727134296168
 MonoBehaviour:
   m_ObjectHideFlags: 1

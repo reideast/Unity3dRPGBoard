@@ -209,6 +209,7 @@
           <e p="PopupTextController.cs" t="Include" />
           <e p="TokenAttacker.cs" t="Include" />
           <e p="TokenStats.cs" t="Include" />
+          <e p="TokenWalker.cs" t="Include" />
           <e p="WeaponSelfActions.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
