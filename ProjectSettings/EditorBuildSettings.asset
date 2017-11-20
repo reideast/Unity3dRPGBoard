@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/rpgBoardScene.unity
+    guid: 6dd8952811bf7cc4e85add8abc9fbc08

@@ -8,11 +8,9 @@ using UnityEditor;
 public class GameManager : MonoBehaviour {
     // Public GameObjects to be assigned in editor
     public GameObject OneByOnePrefab;
-
     public Camera Camera;
     public List<GameObject> MonsterPrefabsList;
     public List<GameObject> PlayerPrefabList;
-
     public GameObject MenuCanvas, InGameCanvas, PlayersWinMessage, MonstersWinMessage;
     public TMP_Text TextCurrentActor, TextHP, TextAC, TextAtkName, TextAtkRoll, TextDmgRoll, TextSpeedLeft, TextTurnTracker;
 
@@ -24,7 +22,6 @@ public class GameManager : MonoBehaviour {
     public Turn currentTurnStats;
     private int playerCount, monsterCount;
     [HideInInspector] public static STATES state = STATES.MENU;
-
     public enum STATES {
         MENU,
         AWAITING_INPUT,
@@ -35,20 +32,17 @@ public class GameManager : MonoBehaviour {
     private SceneActor[] undeadScene;
     private SceneActor[] koboldScene;
 
-    // The game board, available for inspection
-    // each Space object contains a reference to a OneByOne (GameObject). Use this to find actual world unit coordinates of each game space
+    // The game board, with useful properties for several scripts
+    // each Space object contains a reference to a OneByOne (GameObject). Use these to find actual world unit coordinates of each game space
     [HideInInspector] public Space[,] spaces;
-
     public GameObject SpacesHolder; // an empty GameObject to hold all the spaces. Simply to reduce clutter...doesn't improve performance, I think
 
     // Properties of the spaces
     public int RowsX = 60, ColsZ = 60;
-
     private const float DropFromHeight = 10f;
     private const float Margin = 0.05f;
     private const float SpaceHeight = 0.2f;
     public Vector3 SPACE_HEIGHT_MOD;
-
     private const float cameraSpeed = 4;
 
 
@@ -68,11 +62,11 @@ public class GameManager : MonoBehaviour {
         koboldScene = new SceneActor[] {
             new SceneActor(true, 1, 28, 27, new Color(0, 0.8f, 0.5f, 0.58f)), // Heavy Weapon Fighter
             new SceneActor(true, 2, 26, 29, new Color(0, 0.47f, 0.5f, 0.58f)), // Bow Ranger
-            new SceneActor(true, 3, 27, 26, new Color(0, 0.2f, 0.5f, 0.58f)), // Rogue
+            new SceneActor(true, 3, 27, 26, new Color(0, 0.0f, 0.5f, 0.58f)), // Rogue
             new SceneActor(false, 2, 13, 30, new Color(1f, 0.7f, 0.8f, 0.58f)), // Basic kobold
             new SceneActor(false, 2, 15, 24, new Color(1f, 0.3f, 0.8f, 0.58f)),
-            new SceneActor(false, 2, 17, 20, new Color(0.8f, 0.7f, 0.5f, 0.58f)),
-            new SceneActor(false, 2, 18, 22, new Color(0.9f, 0.9f, 0.9f, 0.58f)),
+            new SceneActor(false, 2, 17, 20, new Color(1f, 0.5f, 0.0f, 0.58f)),
+            new SceneActor(false, 2, 18, 22, new Color(1f, 0.1f, 0.4f, 0.58f)),
             new SceneActor(false, 3, 12, 28, new Color(1f, 0.75f, 0.2f, 0.58f)), // Kobold rogue
             new SceneActor(false, 4, 18, 25, new Color(1f, 0, 0, 0.58f)), // Kobold sorcerer
         };
@@ -80,8 +74,8 @@ public class GameManager : MonoBehaviour {
         // Generate game board made of one-by-one squares
         spaces = new Space[RowsX, ColsZ];
         GenerateSquares();
-//        ResetBoard();
     }
+
     public void SetState(STATES newSate) {
         state = newSate;
         if (newSate == STATES.AWAITING_INPUT) {
@@ -210,6 +204,7 @@ public class GameManager : MonoBehaviour {
             }
         }
 
+        // Reset the squares back to their position, ready to be dropped
         for (int x = 0; x < RowsX; x++) {
             for (int z = 0; z < ColsZ; z++) {
                 if (!spaces[x, z].isBlocked) {
@@ -231,20 +226,29 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Establish the turn order of all monsters
     private void RollInit() {
         foreach (Actor actor in actors) {
             actor.RollInit();
         }
         actors.Sort((a, b) => b.Initative.CompareTo(a.Initative));
+        UpdateTurnTracker();
+    }
+
+    // Recreate the list of tokens shon to the user
+    private void UpdateTurnTracker() {
         string turnTrackerList = "";
         foreach (Actor actor in actors) {
-            turnTrackerList += actor.Initative + " - " + actor.ActorName + "\n";
+            if (actor.IsAlive) {
+                turnTrackerList += actor.Initative + " - " + actor.ActorName + "\n";
+            }
         }
         TextTurnTracker.text = turnTrackerList;
     }
 
+    // Advance play to the next turn
     public void NextTurn() {
-        // Turn of highlight for previous token
+        // Turn off highlight for previous token
         if (currentActorTurn >= 0) { // skip for first turn
             ((Behaviour) actors[currentActorTurn].tokenRef.GetComponent("Halo")).enabled = false;
         }
@@ -268,7 +272,7 @@ public class GameManager : MonoBehaviour {
         TextDmgRoll.text = actors[currentActorTurn].DamageDieNum + "d" + actors[currentActorTurn].DamageDieMagnitude + " + " + actors[currentActorTurn].DamageMod;
         TextSpeedLeft.text = actors[currentActorTurn].Speed + " Spaces";
 
-        // Track what's been happening this turn
+        // Define struct to keep track what'll be happening this turn
         currentTurnStats = new Turn {MovementLeft = actors[currentActorTurn].Speed};
 
         // Change visuals for this actor's turn
@@ -276,6 +280,11 @@ public class GameManager : MonoBehaviour {
 
         // Set state
         SetState(STATES.AWAITING_INPUT);
+    }
+    // Contains the information for a current turn. Temporary: will be deleted after one turn is done
+    public class Turn {
+        public int MovementLeft;
+        public bool HasAttackHappened = false;
     }
 
     public void CheckForTurnCompleted() {
@@ -285,12 +294,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Contains the information for a current turn. Temporary: will be deleted after one turn is done
-    public class Turn {
-        public int MovementLeft;
-        public bool HasAttackHappened = false;
-    }
 
+    // Resolve an attack action
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedToken(GameObject attackee) {
         SetState(STATES.ANIMATING_ACTION);
@@ -353,6 +358,7 @@ public class GameManager : MonoBehaviour {
     public void CheckForDeath(Actor actor) {
         if (actor.HP <= 0) {
             actor.IsAlive = false; // Note: still blocking its space, which is fine!
+            UpdateTurnTracker();
             KillAnimation(actor.tokenRef);
             if (actor.IsPlyaer) {
                 playerCount--;
@@ -394,6 +400,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+
+    // Resolve a walk action
     // Recevied from any arbitrary GameObject with the OnClick-Message script attached
     public void MessageClickedSpace(Vector2 coord) {
         WalkActor(actors[currentActorTurn], (int) coord.x, (int) coord.y);
@@ -446,11 +454,13 @@ public class GameManager : MonoBehaviour {
         }
 
         if (state == STATES.AWAITING_INPUT) {
-            if (Input.GetKey(KeyCode.Space)) {
+            if (Input.GetKey(KeyCode.Space) && lastInputTime + 1f < Time.time) {
+                lastInputTime = Time.time;
                 NextTurn();
             }
         }
     }
+    private float lastInputTime = 0f; // Used to limit turn skipping, because hitting the spacebar can sometimes be read as holding it down, and skips several turns
 
     // A struct to hold information about the game board spaces
     public class Space {
