@@ -32,9 +32,8 @@ public class GameManager : MonoBehaviour {
     };
 
     // Predefined Scenarios
-    private SceneActor[] skeletonScene;
-
-    private SceneActor[] OTHERScene; // TODO: Make this one, too!
+    private SceneActor[] undeadScene;
+    private SceneActor[] koboldScene;
 
     // The game board, available for inspection
     // each Space object contains a reference to a OneByOne (GameObject). Use this to find actual world unit coordinates of each game space
@@ -59,9 +58,15 @@ public class GameManager : MonoBehaviour {
         PopupTextController.Initialize();
 
         // Build the predefined scenarios
-        skeletonScene = new SceneActor[] {
-            new SceneActor(true, 0, 25, 25, new Color(0, 0.47f, 1f, 0.58f)),
-            new SceneActor(false, 0, 25, 28, new Color(1f, 0, 0, 0.58f))
+        undeadScene = new SceneActor[] {
+            new SceneActor(true, 0, 25, 17, new Color(0, 0.47f, 1f, 0.58f)), // Paladin
+            new SceneActor(false, 0, 28, 27, new Color(1f, 0, 0, 0.58f)), // Skeleton
+            new SceneActor(false, 0, 13, 30, new Color(1f, 0.5f, 0, 0.58f)),
+            new SceneActor(false, 0, 20, 27, new Color(1f, 0.75f, 0, 0.58f)),
+            new SceneActor(false, 1, 17, 29, new Color(0.5f, 0.75f, 0.5f, 0.58f)) // Zombie
+        };
+        koboldScene = new SceneActor[] {
+            new SceneActor(true, 0, 25, 17, new Color(0, 0.47f, 1f, 0.58f)) // Paladin
         };
 
         // Generate game board made of one-by-one squares
@@ -86,22 +91,20 @@ public class GameManager : MonoBehaviour {
     }
 
     private static int RollDice(int numDice, int diceMagnitude, int mod) {
-        Debug.Log("Rolling: " + numDice + "d" + diceMagnitude + " + " + mod);
         int diceTotal = mod;
         for (int i = 0; i < numDice; ++i) {
             diceTotal += Random.Range(1, diceMagnitude);
         }
-        Debug.Log(" = " + diceTotal);
         return diceTotal;
     }
 
-    public void OnClickStartSkeletonsButton() {
+    public void OnClickStartUndead() {
         // Reset the scene and place the new scene's tokens
-        ResetBuildAndStartScene(skeletonScene);
+        ResetBuildAndStartScene(undeadScene);
     }
 
-    public void OnClickStartOTHERButton() {
-
+    public void OnClickStartKobol() {
+        ResetBuildAndStartScene(koboldScene);
     }
 
     private void ResetBuildAndStartScene(SceneActor[] predefinedSceneActors) {
@@ -298,8 +301,7 @@ public class GameManager : MonoBehaviour {
                         PopupTextController.PopupText("Creature is already dead", attackee.transform);
                     } else {
                         // Check if attack is possible, using A* pathfinding to find range in num squares, manhattan distance
-                        if (Pathfind.FindDistance((int) attacker.transform.position.x, (int) attacker.transform.position.z, (int) attackee.transform.position.x,
-                                (int) attackee.transform.position.z) > actors[currentActorTurn].AttackRange) {
+                        if (Pathfind.FindDistance(actors[currentActorTurn].x, actors[currentActorTurn].z, victim.x, victim.z) > actors[currentActorTurn].AttackRange) {
                             PopupTextController.PopupText("Out of range", attackee.transform);
                         } else {
                             // Roll to hit
@@ -433,6 +435,12 @@ public class GameManager : MonoBehaviour {
         }
         if (deltaX != 0f || deltaZ != 0f) {
             Camera.transform.position = new Vector3(Camera.transform.position.x + deltaX, Camera.transform.position.y, Camera.transform.position.z + deltaZ);
+        }
+
+        if (state == STATES.AWAITING_INPUT) {
+            if (Input.GetKey(KeyCode.Space)) {
+                NextTurn();
+            }
         }
     }
 
