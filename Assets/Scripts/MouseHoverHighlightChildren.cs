@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 // Script is taken from Unity Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnMouseOver.html
@@ -39,7 +38,7 @@ public class MouseHoverHighlightChildren : MouseHoverHighlight {
             while (i.MoveNext() && c.MoveNext()) {
                 i.Current.material.color = c.Current;
             }
-        } 
+        }
     }
 
     void OnMouseExit()

@@ -491,6 +491,7 @@ public class GameManager : MonoBehaviour {
 
     // A struct to hold an actor on the game board
     // A list of these will make up a scene
+    // They are generated at the start of every game from a combination of a GameObject's TokenStats struct and a SceneActor struct
     public class Actor {
         public GameObject tokenRef;
         public int x, z;
