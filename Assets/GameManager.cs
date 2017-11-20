@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour {
         ResetBuildAndStartScene(undeadScene);
     }
 
-    public void OnClickStartKobol() {
+    public void OnClickStartKobold() {
         ResetBuildAndStartScene(koboldScene);
     }
 
