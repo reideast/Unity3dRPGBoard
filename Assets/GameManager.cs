@@ -66,7 +66,15 @@ public class GameManager : MonoBehaviour {
             new SceneActor(false, 1, 17, 29, new Color(0.5f, 0.75f, 0.5f, 0.58f)) // Zombie
         };
         koboldScene = new SceneActor[] {
-            new SceneActor(true, 0, 25, 17, new Color(0, 0.47f, 1f, 0.58f)) // Paladin
+            new SceneActor(true, 1, 28, 27, new Color(0, 0.8f, 0.5f, 0.58f)), // Heavy Weapon Fighter
+            new SceneActor(true, 2, 26, 29, new Color(0, 0.47f, 0.5f, 0.58f)), // Bow Ranger
+            new SceneActor(true, 3, 27, 26, new Color(0, 0.2f, 0.5f, 0.58f)), // Rogue
+            new SceneActor(false, 2, 13, 30, new Color(1f, 0.7f, 0.8f, 0.58f)), // Basic kobold
+            new SceneActor(false, 2, 15, 24, new Color(1f, 0.3f, 0.8f, 0.58f)),
+            new SceneActor(false, 2, 17, 20, new Color(0.8f, 0.7f, 0.5f, 0.58f)),
+            new SceneActor(false, 2, 18, 22, new Color(0.9f, 0.9f, 0.9f, 0.58f)),
+            new SceneActor(false, 3, 12, 28, new Color(1f, 0.75f, 0.2f, 0.58f)), // Kobold rogue
+            new SceneActor(false, 4, 18, 25, new Color(1f, 0, 0, 0.58f)), // Kobold sorcerer
         };
 
         // Generate game board made of one-by-one squares

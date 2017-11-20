@@ -206,7 +206,7 @@ MonoBehaviour:
   Speed: 5
   AttackName: Magic Missile
   AttackRange: 10
-  AttackMod: 3
+  AttackMod: 8
   DamageDiceNum: 2
   DamageDiceMagnitude: 4
   DamageMod: 2
